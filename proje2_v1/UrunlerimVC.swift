@@ -19,10 +19,8 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var UrunAdresArray = [String]()
     var UrunEpostaArray = [String]()
     
-    //Variables for segue 2 IlanGoruntuleVC
-    var sUAdres = ""
+    //Variables for segue 2 Ilan Kaldrı VC
     var sUIsim = ""
-    var sUEposta = ""
     var sUT1 = ""
     var sUT2 = ""
     var sUT3 = ""
@@ -119,28 +117,24 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 //Selected Cell Data -> Variables
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.sUAdres = UrunAdresArray[indexPath.row]
         self.sUIsim = UrunIsmiArray[indexPath.row]
-        self.sUEposta = UrunEpostaArray[indexPath.row]
         self.sUT1 =  UrunTakas1Array[indexPath.row]
         self.sUT2 = UrunTakas2Array[indexPath.row]
         self.sUT3 = UrunTakas3Array[indexPath.row]
         self.sUImg = UrunGorselArray[indexPath.row]
-        performSegue(withIdentifier: "urunlerimToGoruntule", sender: nil)
+        performSegue(withIdentifier: "UrunlerimToUrunDetailVC", sender: nil)
     }
     
 //Variables -> SegueVC Data Variables
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "urunlerimToGoruntule"{
-            let destinationVC = segue.destination as! IlanGoruntuleVC
-            destinationVC.sIsim = self.sUIsim
-            destinationVC.sAdres = self.sUAdres
-            destinationVC.sEposta = self.sUEposta
-            destinationVC.sT1 = self.sUT1
-            destinationVC.sT2 = self.sUT2
-            destinationVC.sT3 = self.sUT3
-            destinationVC.sImg = self.sUImg
+        if segue.identifier == "UrunlerimToUrunDetailVC"{
+            let destinationVC = segue.destination as! UrunlerimDetailVC
+            destinationVC.sUDIsim = self.sUIsim
+            destinationVC.sUDT1 = self.sUT1
+            destinationVC.sUDT2 = self.sUT2
+            destinationVC.sUDT3 = self.sUT3
+            destinationVC.sUDImg = self.sUImg
 
         }
     }
