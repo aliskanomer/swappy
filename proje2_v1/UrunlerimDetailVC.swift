@@ -28,6 +28,7 @@ class UrunlerimDetailVC: UIViewController {
     @IBOutlet weak var urunTakas3Lbl: UILabel!
     @IBOutlet weak var ilanKaldırMesajLbl: UILabel!
     @IBOutlet weak var ilanUyarıMesajLbl: UILabel!
+    @IBOutlet weak var kaldirBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class UrunlerimDetailVC: UIViewController {
                         self.ilanKaldırMesajLbl.text = self.deleteSuccess
                         self.ilanKaldırMesajLbl.center.x = self.view.center.x
                         self.ilanKaldırMesajLbl.center.y = self.view.center.y
-                        
+                        self.kaldirBtn.isHidden = true
                     }
                 }
             }else{
