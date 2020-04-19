@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import SDWebImage
 class UrunlerimDetailVC: UIViewController {
+    //messages
+    let deleteSuccess = "Tamamdır! İlanını sildik. Artık arama sonuçlarında veya ana sayfada sen veya başka kullanıcılar bu ilanı görüntüleyemeyecek!"
+    let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
     //data transfer variables
     var sUDIsim = ""
     var sUDT1 = ""
@@ -42,20 +45,20 @@ class UrunlerimDetailVC: UIViewController {
                 if let dataID = doc?.documentID {
                     if dataID == self.sUDID{
                         docRef.delete()
+                        self.makeAlert(baslik: "Tamamdır!", mesaj: self.deleteSuccess)
                     }
                 }
+            }else{
+                self.makeAlert(baslik: "Ups!", mesaj: self.deleteError)
             }
         }
-        /*docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
-            }
-        }*/
         
         
     }
-    
+    func makeAlert(baslik: String , mesaj: String){
+        let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
+        let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(OKButton)
+        self.present(alert,animated: true,completion: nil)
+    }
 }
