@@ -11,7 +11,7 @@ import Firebase
 import SDWebImage
 class UrunlerimDetailVC: UIViewController {
     //messages
-    let deleteSuccess = "Tamamdır! İlanını sildik. Artık arama sonuçlarında veya ana sayfada sen veya başka kullanıcılar bu ilanı görüntüleyemeyecek!"
+    let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
     let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
     //data transfer variables
     var sUDIsim = ""
@@ -26,6 +26,8 @@ class UrunlerimDetailVC: UIViewController {
     @IBOutlet weak var urunTakas1Lbl: UILabel!
     @IBOutlet weak var urunTakas2Lbl: UILabel!
     @IBOutlet weak var urunTakas3Lbl: UILabel!
+    @IBOutlet weak var ilanKaldırMesajLbl: UILabel!
+    @IBOutlet weak var ilanUyarıMesajLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,17 @@ class UrunlerimDetailVC: UIViewController {
                 if let dataID = doc?.documentID {
                     if dataID == self.sUDID{
                         docRef.delete()
-                        self.makeAlert(baslik: "Tamamdır!", mesaj: self.deleteSuccess)
+                        //rearrange of the page by code
+                        self.urunImg.isHidden = true
+                        self.urunısimLbl.isHidden = true
+                        self.urunTakas1Lbl.isHidden = true
+                        self.urunTakas2Lbl.isHidden = true
+                        self.urunTakas3Lbl.isHidden = true
+                        self.ilanUyarıMesajLbl.isHidden = true
+                        self.ilanKaldırMesajLbl.text = self.deleteSuccess
+                        self.ilanKaldırMesajLbl.center.x = self.view.center.x
+                        self.ilanKaldırMesajLbl.center.y = self.view.center.y
+                        
                     }
                 }
             }else{

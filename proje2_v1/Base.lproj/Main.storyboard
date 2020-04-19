@@ -256,6 +256,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zrc-f6-9hi"/>
                     <connections>
+                        <outlet property="ilanKaldırMesajLbl" destination="RZG-cL-Geb" id="exE-Ze-Hkl"/>
+                        <outlet property="ilanUyarıMesajLbl" destination="AcY-2D-bFT" id="UaH-Zb-PKA"/>
                         <outlet property="urunImg" destination="qVO-Mw-Ogt" id="AEt-UJ-SIJ"/>
                         <outlet property="urunTakas1Lbl" destination="img-HN-g7H" id="uHD-Ek-cSE"/>
                         <outlet property="urunTakas2Lbl" destination="16X-wS-EC8" id="xe3-9r-SXl"/>
