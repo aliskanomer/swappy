@@ -18,6 +18,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var UrunTakas3Array = [String]()
     var UrunAdresArray = [String]()
     var UrunEpostaArray = [String]()
+    var UrunIDArray = [String]()
     
     //Variables for segue 2 Ilan Kaldrı VC
     var sUIsim = ""
@@ -25,6 +26,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var sUT2 = ""
     var sUT3 = ""
     var sUImg = ""
+    var sUID = ""
     
     @IBOutlet weak var UrunlerimTableView: UITableView!
     override func viewDidLoad() {
@@ -72,16 +74,16 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                     if let UrunTakas1 = doc.get("ilanTakas1") as? String{
                                                         if let UrunTakas2 = doc.get("ilanTakas2") as? String{
                                                             if let UrunTakas3 = doc.get("ilanTakas3") as? String{
-                                                                
-                                                                //Push data 2 Arrays
-                                                                
-                                                                self.UrunGorselArray.append(UrunImg)
-                                                                self.UrunIsmiArray.append(UrunIsim)
-                                                                self.UrunAdresArray.append(UrunAdres)
-                                                                self.UrunEpostaArray.append(UrunEmail)
-                                                                self.UrunTakas1Array.append(UrunTakas1)
-                                                                self.UrunTakas2Array.append(UrunTakas2)
-                                                                self.UrunTakas3Array.append(UrunTakas3)
+                                                                    //Push data 2 Arrays
+                                                                    
+                                                                    self.UrunGorselArray.append(UrunImg)
+                                                                    self.UrunIsmiArray.append(UrunIsim)
+                                                                    self.UrunAdresArray.append(UrunAdres)
+                                                                    self.UrunEpostaArray.append(UrunEmail)
+                                                                    self.UrunTakas1Array.append(UrunTakas1)
+                                                                    self.UrunTakas2Array.append(UrunTakas2)
+                                                                    self.UrunTakas3Array.append(UrunTakas3)
+                                                                    self.UrunIDArray.append(doc.documentID)
                                                             }
                                                         }
                                                     }
@@ -122,6 +124,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         self.sUT2 = UrunTakas2Array[indexPath.row]
         self.sUT3 = UrunTakas3Array[indexPath.row]
         self.sUImg = UrunGorselArray[indexPath.row]
+        self.sUID = UrunIDArray[indexPath.row]
         performSegue(withIdentifier: "UrunlerimToUrunDetailVC", sender: nil)
     }
     
@@ -135,7 +138,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.sUDT2 = self.sUT2
             destinationVC.sUDT3 = self.sUT3
             destinationVC.sUDImg = self.sUImg
-
+            destinationVC.sUDID = self.sUID
         }
     }
 

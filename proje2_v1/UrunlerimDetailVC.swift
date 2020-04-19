@@ -15,8 +15,8 @@ class UrunlerimDetailVC: UIViewController {
     var sUDT1 = ""
     var sUDT2 = ""
     var sUDT3 = ""
-    var sUDImg = ""
-    
+    var sUDImg = "" //url aktarıldı
+    var sUDID = "" //ID aktarıldı String olarak
     //elements
     @IBOutlet weak var urunImg: UIImageView!
     @IBOutlet weak var urunısimLbl: UILabel!
@@ -35,8 +35,27 @@ class UrunlerimDetailVC: UIViewController {
     }
 
     @IBAction func ilanKaldırBtnClicked(_ sender: Any) {
-        //verileri çek
-        //documantIDsi yollanan veri ile eşleşen veriyi sil
+        let db = Firestore.firestore()
+        let docRef = db.collection("Ilanlar").document(self.sUDID)
+        docRef.getDocument { (doc, error) in
+            if error == nil{
+                if let dataID = doc?.documentID {
+                    if dataID == self.sUDID{
+                        docRef.delete()
+                    }
+                }
+            }
+        }
+        /*docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
+            }
+        }*/
+        
+        
     }
     
 }
