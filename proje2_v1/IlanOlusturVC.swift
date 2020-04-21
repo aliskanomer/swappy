@@ -19,12 +19,7 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     @IBOutlet weak var yeniIlanTakas2Txt: UITextField!
     @IBOutlet weak var yeniIlanTakas3Txt: UITextField!
     
-    //alert messages
-    
-    let StorageUnkError = "Görsel yüklenirken beklenmedik bir hata ile karşılaşıldı.Görselin iCloud saklama alanından iPhone'ununza yüklendiğinden emin olup tekrar deneyiniz."
-    let cloudPullReqError = "Görsel uzak sunucudan çekilirken bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniz"
-    let pushError = "Verilerin servera yüklenmesi sırasında bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniiz"
-    let ilanUploadSuccess = "Yaşasın!Ilanın başarı ile oluşturuldu.Ilanlara göz atman için seni anasayfaya yönlendiriyoruz"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +79,10 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
                             
                             //security check before push
                             
-                            if Auth.auth().currentUser != nil{ //gereklilik?
+                            if Auth.auth().currentUser != nil{
+                                
+                                //gereklilik?
+                                
                                 if  self.yeniIlanIsimTxt.text == "" ||
                                     self.yeniIlanAdresTxt.text == "" ||
                                     self.yeniIlanTakas1Txt.text == "" ||
@@ -92,7 +90,9 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
                                     self.yeniIlanTakas3Txt.text == "" {
                                     
                                     self.makeAlert(baslik: "Hata", mesaj: "Ürüne ait talep edilen bilgilerin tamamının doldurulması zorunludur")
-                                }else{//pushh
+                                }else{
+                                    
+                                    //push
                                     
                                     fsRef = fireStoreDatabase.collection("Ilanlar").addDocument(data: fsIlanDic, completion: { (databaseError) in
                                         if databaseError != nil{
@@ -144,4 +144,10 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         self.present(alert,animated: true,completion: nil)
     }
 
+    //alert messages
+    
+    let StorageUnkError = "Görsel yüklenirken beklenmedik bir hata ile karşılaşıldı.Görselin iCloud saklama alanından iPhone'ununza yüklendiğinden emin olup tekrar deneyiniz."
+    let cloudPullReqError = "Görsel uzak sunucudan çekilirken bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniz"
+    let pushError = "Verilerin servera yüklenmesi sırasında bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniiz"
+    let ilanUploadSuccess = "Yaşasın!Ilanın başarı ile oluşturuldu.Ilanlara göz atman için seni anasayfaya yönlendiriyoruz"
 }

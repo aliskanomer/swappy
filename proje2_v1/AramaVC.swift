@@ -55,16 +55,38 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         }
     }
     func dataPull4Search(){
+        if AramaTxt.text != ""{
+            let FireStoreRef = Firestore.firestore()
+            FireStoreRef.collection("Ilanlar")
+                .whereField("ilanIsim", isEqualTo: AramaTxt.text!)
+                .order(by: "date", descending: true)
+                .addSnapshotListener { (snapshot, snapshotError) in
+                    if snapshotError != nil{
+                        print("Error")
+                    }else{
+                        if snapshot?.isEmpty != true && snapshot != nil{
+                            //aranan isimde belgeler var ve snapshotQuery döndü demektir
+                            
+                        }else{
+                            //aranabelge yok ve sonuç dönmedi demektir
+                            //snapshotın nill olma sebebi sadece verinin olmaması durumuysa diye bunu düşündüm. Snapshotın nill olma sebeğlerini araştır
+                        }
+                    }
+            }
+
+        }else{
+            makeAlert(baslik: "Ups!", mesaj: TxtBarError)
+        }
         
         
         
-        self.AramaImgArray.append("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
+        /*self.AramaImgArray.append("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
         self.AramaIsimArray.append("ilanIsim")
         self.AramaTakas1Array.append("ilanTakas1")
         self.AramaTakas2Array.append("ilanTakas2")
         self.AramaTakas3Array.append("ilanTakas3")
         self.AramaAdresArray.append("ilanAdres")
-        self.AramaEpostaArray.append("ilanMail")
+        self.AramaEpostaArray.append("ilanMail")*/
     }
     
 //Row number setting func
