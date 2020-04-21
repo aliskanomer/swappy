@@ -45,6 +45,9 @@
 		ADA58030244A3ADF003C35CD /* IlanGoruntuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */; };
 		ADA58031244A3ADF003C35CD /* IlanGoruntuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */; };
 		ADC2F19F244CCD0800BDAFB5 /* UrunlerimDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */; };
+		ADC7F6E4244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
+		ADC7F6E5244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
+		ADC7F6E6244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
 		DF0623B314626EAB5D355A0E /* Pods_proje2_v1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E465755749EFDE4345EA121 /* Pods_proje2_v1.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +97,7 @@
 		ADA5802A244A3ACD003C35CD /* IlanOlusturVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlanOlusturVC.swift; sourceTree = "<group>"; };
 		ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlanGoruntuleVC.swift; sourceTree = "<group>"; };
 		ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrunlerimDetailVC.swift; sourceTree = "<group>"; };
+		ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AramaCell.swift; sourceTree = "<group>"; };
 		B1B836A7AE68E2FBB9FF987C /* Pods_proje2_v1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proje2_v1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62A7C3F44AB39AD4A2823B8 /* Pods-proje2_v1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proje2_v1Tests.debug.xcconfig"; path = "Target Support Files/Pods-proje2_v1Tests/Pods-proje2_v1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9058A4CA0190E448A1E8F13 /* Pods_proje2_v1_proje2_v1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proje2_v1_proje2_v1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,7 @@
 				ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */,
 				ADA5801A244A3A7A003C35CD /* ProfilVC.swift */,
 				ADA5801E244A3A90003C35CD /* AramaVC.swift */,
+				ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */,
 				ADA5802A244A3ACD003C35CD /* IlanOlusturVC.swift */,
 				ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */,
 				ADA57FEF244A1972003C35CD /* Assets.xcassets */,
@@ -469,6 +474,7 @@
 				ADA5801B244A3A7A003C35CD /* ProfilVC.swift in Sources */,
 				ADA57FE9244A1970003C35CD /* SceneDelegate.swift in Sources */,
 				AD44BA88244A3F68004359DC /* UrunlerimCell.swift in Sources */,
+				ADC7F6E4244F6EFA008AA14E /* AramaCell.swift in Sources */,
 				ADA5801F244A3A90003C35CD /* AramaVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +491,7 @@
 				ADA5802C244A3ACD003C35CD /* IlanOlusturVC.swift in Sources */,
 				ADA58030244A3ADF003C35CD /* IlanGoruntuleVC.swift in Sources */,
 				ADA58020244A3A90003C35CD /* AramaVC.swift in Sources */,
+				ADC7F6E5244F6EFA008AA14E /* AramaCell.swift in Sources */,
 				ADA58028244A3AB8003C35CD /* UrunlerimVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +508,7 @@
 				ADA5802D244A3ACD003C35CD /* IlanOlusturVC.swift in Sources */,
 				ADA58031244A3ADF003C35CD /* IlanGoruntuleVC.swift in Sources */,
 				ADA58021244A3A90003C35CD /* AramaVC.swift in Sources */,
+				ADC7F6E6244F6EFA008AA14E /* AramaCell.swift in Sources */,
 				ADA58029244A3AB8003C35CD /* UrunlerimVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

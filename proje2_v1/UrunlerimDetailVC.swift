@@ -20,6 +20,7 @@ class UrunlerimDetailVC: UIViewController {
     var sUDT3 = ""
     var sUDImg = "" //url aktarıldı
     var sUDID = "" //ID aktarıldı String olarak
+    var SUDAdres = ""
     //elements
     @IBOutlet weak var urunImg: UIImageView!
     @IBOutlet weak var urunısimLbl: UILabel!
@@ -29,6 +30,7 @@ class UrunlerimDetailVC: UIViewController {
     @IBOutlet weak var ilanKaldırMesajLbl: UILabel!
     @IBOutlet weak var ilanUyarıMesajLbl: UILabel!
     @IBOutlet weak var kaldirBtn: UIButton!
+    @IBOutlet weak var urunAdresLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class UrunlerimDetailVC: UIViewController {
         urunTakas1Lbl.text = sUDT1
         urunTakas2Lbl.text = sUDT2
         urunTakas3Lbl.text = sUDT3
+        urunAdresLbl.text = SUDAdres
         urunImg.sd_setImage(with: URL(string: sUDImg))
 
     }
@@ -55,6 +58,7 @@ class UrunlerimDetailVC: UIViewController {
                         self.urunTakas2Lbl.isHidden = true
                         self.urunTakas3Lbl.isHidden = true
                         self.ilanUyarıMesajLbl.isHidden = true
+                        self.urunAdresLbl.isHidden = true
                         self.ilanKaldırMesajLbl.text = self.deleteSuccess
                         self.ilanKaldırMesajLbl.center.x = self.view.center.x
                         self.ilanKaldırMesajLbl.center.y = self.view.center.y

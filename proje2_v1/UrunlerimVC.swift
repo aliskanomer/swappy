@@ -27,6 +27,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var sUT3 = ""
     var sUImg = ""
     var sUID = ""
+    var sUAdres = ""
     
     @IBOutlet weak var UrunlerimTableView: UITableView!
     override func viewDidLoad() {
@@ -125,6 +126,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         self.sUT3 = UrunTakas3Array[indexPath.row]
         self.sUImg = UrunGorselArray[indexPath.row]
         self.sUID = UrunIDArray[indexPath.row]
+        self.sUAdres = UrunAdresArray[indexPath.row]
         performSegue(withIdentifier: "UrunlerimToUrunDetailVC", sender: nil)
     }
     
@@ -139,6 +141,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.sUDT3 = self.sUT3
             destinationVC.sUDImg = self.sUImg
             destinationVC.sUDID = self.sUID
+            destinationVC.SUDAdres = self.sUAdres
         }
     }
 
