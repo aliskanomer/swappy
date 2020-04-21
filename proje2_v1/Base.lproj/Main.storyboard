@@ -685,30 +685,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARAMA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQf-tN-E31">
-                                <rect key="frame" x="16" y="20" width="343" height="56"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="61"/>
-                                <nil key="textColor"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Aradığınız ismini giriniz" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="crg-6o-dmA">
+                                <rect key="frame" x="16" y="75" width="343" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWi-vf-6Ce">
+                                <rect key="frame" x="16" y="130" width="343" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="1" green="0.67060597180000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="magnifyingglass" catalog="system">
+                                    <color key="titleColor" red="1" green="0.67060597180000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="AraBtnClicked:" destination="dOO-A3-Mwa" eventType="touchUpInside" id="L9P-ND-wnE"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17T-ct-Axd">
+                                <rect key="frame" x="0.0" y="182" width="375" height="436"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ARAMA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="341-Uu-ewf">
+                                <rect key="frame" x="16" y="20" width="343" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" red="1" green="0.67060597180000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="rQf-tN-E31" firstAttribute="top" secondItem="FdO-oE-70K" secondAttribute="top" constant="20" id="3mb-Hx-ZhP"/>
-                            <constraint firstItem="rQf-tN-E31" firstAttribute="leading" secondItem="jEx-KC-hsi" secondAttribute="leadingMargin" id="ACu-gi-hGI"/>
-                            <constraint firstItem="rQf-tN-E31" firstAttribute="trailing" secondItem="jEx-KC-hsi" secondAttribute="trailingMargin" id="OMO-QW-wir"/>
-                            <constraint firstItem="FdO-oE-70K" firstAttribute="bottom" secondItem="rQf-tN-E31" secondAttribute="bottom" constant="542" id="yz4-Sy-vDJ"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FdO-oE-70K"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ara" image="magnifyingglass" catalog="system" id="QaD-Oc-lmr"/>
                     <connections>
+                        <outlet property="AramaLbl" destination="341-Uu-ewf" id="jy4-Pq-UFE"/>
+                        <outlet property="AramaTxt" destination="crg-6o-dmA" id="Y2j-U5-Qox"/>
+                        <outlet property="aramTableview" destination="17T-ct-Axd" id="YKf-uv-v26"/>
                         <segue destination="7Mx-VF-VtL" kind="show" identifier="araToGoruntuleVC" id="Com-Jr-IX4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKn-6R-Ckd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="124" y="-619"/>
+            <point key="canvasLocation" x="124" y="-619.34032983508246"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PCw-Bk-wfI">
@@ -734,7 +755,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VN6-Hd-cNS"/>
+        <segue reference="Com-Jr-IX4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bag" catalog="system" width="128" height="128"/>
