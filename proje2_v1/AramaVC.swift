@@ -10,11 +10,15 @@ import UIKit
 import Firebase
 import SDWebImage
 class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    
     //elements
+    
     @IBOutlet weak var AramaLbl: UILabel!
     @IBOutlet weak var AramaTxt: UITextField!
     @IBOutlet weak var aramTableview: UITableView!
+    
     //tableView Arrays
+    
     var AramaIsimArray = [String]()
     var AramaEpostaArray = [String]()
     var AramaImgArray = [String]()
@@ -22,7 +26,9 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var AramaTakas1Array = [String]()
     var AramaTakas2Array = [String]()
     var AramaTakas3Array = [String]()
-    //transfer datas
+    
+    //transfer variables
+    
     var sAIsim = ""
     var sAT1 = ""
     var sAT2 = ""
@@ -30,18 +36,35 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var sAImg = ""
     var sAadres = ""
     var sAEposta = ""
+    
+    //variables
     override func viewDidLoad() {
         super.viewDidLoad()
         aramTableview.delegate = self
         aramTableview.dataSource = self
-        // Do any additional setup after loading the view.
+        aramTableview.isHidden = true
     }
     
     @IBAction func AraBtnClicked(_ sender: Any) {
-        dataPull4Search()
+        if AramaTxt.text == "" {
+            makeAlert(baslik: "Ups!", mesaj: TxtBarError)
+        }else{
+            dataPull4Search()
+            aramTableview.isHidden = false
+            aramTableview.reloadData()
+        }
     }
     func dataPull4Search(){
         
+        
+        
+        self.AramaImgArray.append("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
+        self.AramaIsimArray.append("ilanIsim")
+        self.AramaTakas1Array.append("ilanTakas1")
+        self.AramaTakas2Array.append("ilanTakas2")
+        self.AramaTakas3Array.append("ilanTakas3")
+        self.AramaAdresArray.append("ilanAdres")
+        self.AramaEpostaArray.append("ilanMail")
     }
     
 //Row number setting func
@@ -69,12 +92,12 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //transfer verilerine diziden verileri aktar
         self.sAIsim = AramaIsimArray[indexPath.row]
-        self.sAT1 = AramaIsimArray[indexPath.row]
-        self.sAT2 = AramaIsimArray[indexPath.row]
-        self.sAT3 = AramaIsimArray[indexPath.row]
-        self.sAImg = AramaIsimArray[indexPath.row]
-        self.sAadres = AramaIsimArray[indexPath.row]
-        self.sAEposta = AramaIsimArray[indexPath.row]
+        self.sAT1 = AramaTakas1Array[indexPath.row]
+        self.sAT2 = AramaTakas2Array[indexPath.row]
+        self.sAT3 = AramaTakas3Array[indexPath.row]
+        self.sAImg = AramaImgArray[indexPath.row]
+        self.sAadres = AramaAdresArray[indexPath.row]
+        self.sAEposta = AramaEpostaArray[indexPath.row]
         performSegue(withIdentifier: "araToGoruntuleVC", sender: nil)
     }
     
@@ -93,5 +116,27 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.sImg = self.sAImg
         }
     }
+    
+//self functions
+    func diziTemizle(){
+        self.AramaImgArray.removeAll(keepingCapacity: false)
+        self.AramaIsimArray.removeAll(keepingCapacity: false)
+        self.AramaAdresArray.removeAll(keepingCapacity: false)
+        self.AramaEpostaArray.removeAll(keepingCapacity: false)
+        self.AramaTakas1Array.removeAll(keepingCapacity: false)
+        self.AramaTakas2Array.removeAll(keepingCapacity: false)
+        self.AramaTakas3Array.removeAll(keepingCapacity: false)
+    }
+    
+    func makeAlert(baslik: String , mesaj: String){
+        let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
+        let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(OKButton)
+        self.present(alert,animated: true,completion: nil)
+    }
+    
+    //messages
+    
+    let TxtBarError = "Görünen o ki aramak için bir kelime girmedin! Bir şeyler yazıp tekrar dener misin?"
     
 }

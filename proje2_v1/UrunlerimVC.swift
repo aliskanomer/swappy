@@ -47,13 +47,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                     
                     //data reset on arrays
                     
-                    self.UrunIsmiArray.removeAll(keepingCapacity: false)
-                    self.UrunGorselArray.removeAll(keepingCapacity: false)
-                    self.UrunAdresArray.removeAll(keepingCapacity: false)
-                    self.UrunEpostaArray.removeAll(keepingCapacity: false)
-                    self.UrunTakas1Array.removeAll(keepingCapacity: false)
-                    self.UrunTakas2Array.removeAll(keepingCapacity: false)
-                    self.UrunTakas3Array.removeAll(keepingCapacity: false)
+                    self.diziTemizle()
                     
                     //User check > for loop > users data pull request
                     if Auth.auth().currentUser != nil {
@@ -143,6 +137,17 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.sUDID = self.sUID
             destinationVC.SUDAdres = self.sUAdres
         }
+    }
+    
+//Self funcitons
+    func diziTemizle(){
+        self.UrunGorselArray.removeAll(keepingCapacity: false)
+        self.UrunIsmiArray.removeAll(keepingCapacity: false)
+        self.UrunAdresArray.removeAll(keepingCapacity: false)
+        self.UrunEpostaArray.removeAll(keepingCapacity: false)
+        self.UrunTakas1Array.removeAll(keepingCapacity: false)
+        self.UrunTakas2Array.removeAll(keepingCapacity: false)
+        self.UrunTakas3Array.removeAll(keepingCapacity: false)
     }
 
 }

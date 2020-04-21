@@ -59,13 +59,7 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     
                     //data reset on arrays 4 correct data show
                     
-                    self.ilanGorselArray.removeAll(keepingCapacity: false)
-                    self.ilanIsmiArray.removeAll(keepingCapacity: false)
-                    self.ilanAdresArray.removeAll(keepingCapacity: false)
-                    self.ilanEpostaArray.removeAll(keepingCapacity: false)
-                    self.ilanTakas1Array.removeAll(keepingCapacity: false)
-                    self.ilanTakas2Array.removeAll(keepingCapacity: false)
-                    self.ilanTakas3Array.removeAll(keepingCapacity: false)
+                    self.diziTemizle()
                     
                     //Data pull to arrays
                     
@@ -144,6 +138,16 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+//self functions
+    func diziTemizle(){
+        self.ilanGorselArray.removeAll(keepingCapacity: false)
+        self.ilanIsmiArray.removeAll(keepingCapacity: false)
+        self.ilanAdresArray.removeAll(keepingCapacity: false)
+        self.ilanEpostaArray.removeAll(keepingCapacity: false)
+        self.ilanTakas1Array.removeAll(keepingCapacity: false)
+        self.ilanTakas2Array.removeAll(keepingCapacity: false)
+        self.ilanTakas3Array.removeAll(keepingCapacity: false)
+    }
 
 
 }
