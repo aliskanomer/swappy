@@ -56,20 +56,49 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
     func dataPull4Search(){
         if AramaTxt.text != ""{
+            
             let FireStoreRef = Firestore.firestore()
+            
             FireStoreRef.collection("Ilanlar")
-                .whereField("ilanIsim", isEqualTo: AramaTxt.text!)
+                .whereField("ilanIsmi", isEqualTo: AramaTxt.text!)
                 .order(by: "date", descending: true)
                 .addSnapshotListener { (snapshot, snapshotError) in
                     if snapshotError != nil{
                         print("Error")
                     }else{
+                        
                         if snapshot?.isEmpty != true && snapshot != nil{
                             //aranan isimde belgeler var ve snapshotQuery döndü demektir
+                            //belgelerin her biri için sonuçları listelemen gerekiyor.
+                            self.diziTemizle()
                             
-                        }else{
-                            //aranabelge yok ve sonuç dönmedi demektir
-                            //snapshotın nill olma sebebi sadece verinin olmaması durumuysa diye bunu düşündüm. Snapshotın nill olma sebeğlerini araştır
+                            //verilerii günveli bir şekilde çekme
+                            
+                            for doc in snapshot!.documents{
+                                if let arananImg = doc.get("ilanImgUrl") as? String{
+                                    if let arananIsim = doc.get("ilanIsmi") as? String{
+                                        if let arananTakas1 = doc.get("ilanTakas1") as? String{
+                                            if let arananTakas2 = doc.get("ilanTakas2") as? String{
+                                                if let arananTakas3 = doc.get("ilanTakas3") as? String{
+                                                    if let arananAdres = doc.get("ilanAdres") as? String{
+                                                        if let arananMail = doc.get("ilanKullanici") as? String{
+                                                            self.AramaImgArray.append(arananImg)
+                                                            self.AramaIsimArray.append(arananIsim)
+                                                            self.AramaAdresArray.append(arananAdres)
+                                                            self.AramaEpostaArray.append(arananMail)
+                                                            self.AramaTakas1Array.append(arananTakas1)
+                                                            self.AramaTakas2Array.append(arananTakas2)
+                                                            self.AramaTakas3Array.append(arananTakas3)
+                                                            
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            self.aramTableview.reloadData()
                         }
                     }
             }
@@ -77,16 +106,6 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         }else{
             makeAlert(baslik: "Ups!", mesaj: TxtBarError)
         }
-        
-        
-        
-        /*self.AramaImgArray.append("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
-        self.AramaIsimArray.append("ilanIsim")
-        self.AramaTakas1Array.append("ilanTakas1")
-        self.AramaTakas2Array.append("ilanTakas2")
-        self.AramaTakas3Array.append("ilanTakas3")
-        self.AramaAdresArray.append("ilanAdres")
-        self.AramaEpostaArray.append("ilanMail")*/
     }
     
 //Row number setting func
@@ -157,8 +176,10 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         self.present(alert,animated: true,completion: nil)
     }
     
+    
     //messages
     
     let TxtBarError = "Görünen o ki aramak için bir kelime girmedin! Bir şeyler yazıp tekrar dener misin?"
+    let urunBulunamadıMsg = "Aradığın ürünü malesef bulamadık. İsmi doğru yazdığından emin misin?"
     
 }
