@@ -52,6 +52,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             makeAlert(baslik: "Ups!", mesaj: TxtBarError)
         }else{
             aramTableview.isHidden = true
+            sonucDetayLbl.isHidden = false
             sonucDetayLbl.text = urunBulunamadıMsg
             dataPull4Search()
             aramTableview.reloadData()
