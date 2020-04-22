@@ -16,6 +16,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var AramaLbl: UILabel!
     @IBOutlet weak var AramaTxt: UITextField!
     @IBOutlet weak var aramTableview: UITableView!
+    @IBOutlet weak var sonucDetayLbl: UILabel!
     
     //tableView Arrays
     
@@ -43,6 +44,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         aramTableview.delegate = self
         aramTableview.dataSource = self
         aramTableview.isHidden = true
+        sonucDetayLbl.isHidden = true
     }
     
     @IBAction func AraBtnClicked(_ sender: Any) {
@@ -50,6 +52,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             makeAlert(baslik: "Ups!", mesaj: TxtBarError)
         }else{
             aramTableview.isHidden = true
+            sonucDetayLbl.text = urunBulunamadıMsg
             dataPull4Search()
             aramTableview.reloadData()
         }
@@ -69,6 +72,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                         if snapshot?.isEmpty != true && snapshot != nil{
                             self.diziTemizle()
                             self.aramTableview.isHidden = false
+                            
                             for doc in snapshot!.documents{
                                 if let arananImg = doc.get("ilanImgUrl") as? String{
                                     if let arananIsim = doc.get("ilanIsmi") as? String{
@@ -78,6 +82,10 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                     if let arananAdres = doc.get("ilanAdres") as? String{
                                                         if let arananMail = doc.get("ilanKullanici") as? String{
                                                             self.aramTableview.isHidden = false
+                                                            if let count = snapshot?.count{
+                                                                self.sonucDetayLbl.isHidden = false
+                                                                self.sonucDetayLbl.text = "Arama Sonucunda \(count) ürün bulundu"
+                                                            }
                                                             self.AramaImgArray.append(arananImg)
                                                             self.AramaIsimArray.append(arananIsim)
                                                             self.AramaAdresArray.append(arananAdres)
