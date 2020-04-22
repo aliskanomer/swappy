@@ -64,16 +64,11 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                 .order(by: "date", descending: true)
                 .addSnapshotListener { (snapshot, snapshotError) in
                     if snapshotError != nil{
-                        print("Error")
+                        print("Error")//herhangi bi ürün bulamadığında da buraya giriyor filtrete uymayan ürünlere bakınca da buraya giriyo
                     }else{
-                        
                         if snapshot?.isEmpty != true && snapshot != nil{
-                            //aranan isimde belgeler var ve snapshotQuery döndü demektir
-                            //belgelerin her biri için sonuçları listelemen gerekiyor.
                             self.diziTemizle()
-                            
-                            //verilerii günveli bir şekilde çekme
-                            
+                            self.aramTableview.isHidden = false
                             for doc in snapshot!.documents{
                                 if let arananImg = doc.get("ilanImgUrl") as? String{
                                     if let arananIsim = doc.get("ilanIsmi") as? String{
@@ -89,7 +84,6 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                             self.AramaTakas1Array.append(arananTakas1)
                                                             self.AramaTakas2Array.append(arananTakas2)
                                                             self.AramaTakas3Array.append(arananTakas3)
-                                                            
                                                         }
                                                     }
                                                 }
@@ -98,15 +92,14 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                     }
                                 }
                             }
-                            self.aramTableview.reloadData()
+                        self.aramTableview.reloadData()
+                            
                         }
                     }
-            }
-
-        }else{
-            makeAlert(baslik: "Ups!", mesaj: TxtBarError)
-        }
-    }
+            }//add snapshotlistener
+            
+        }// + -
+    }//func ends
     
 //Row number setting func
     
