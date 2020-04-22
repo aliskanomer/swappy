@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Firebase
 class IlanGoruntuleVC: UIViewController {
     //elements
     
@@ -18,6 +19,7 @@ class IlanGoruntuleVC: UIViewController {
     @IBOutlet weak var IlanGorTakas1Lbl: UILabel!
     @IBOutlet weak var IlanGorTakas2Lbl: UILabel!
     @IBOutlet weak var IlanGorTakas3Lbl: UILabel!
+    @IBOutlet weak var takasBtn: UIButton!
     
     //data Transfer variables (4_nill_handling)
     var sAdres = ""
@@ -37,6 +39,9 @@ class IlanGoruntuleVC: UIViewController {
         IlanGorTakas2Lbl.text = sT2
         IlanGorTakas3Lbl.text = sT3
         IlanGorImgView.sd_setImage(with: URL(string: sImg))//URLden img set ediliyor
+            if sEposta == Auth.auth().currentUser?.email{
+                takasBtn.isHidden = true
+            }
     }
     
     @IBAction func ilanGorTakasBtnClicked(_ sender: Any) {

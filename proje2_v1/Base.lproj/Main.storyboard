@@ -574,6 +574,7 @@
                         <outlet property="IlanGorTakas1Lbl" destination="EeX-2j-gPm" id="cc6-js-MkQ"/>
                         <outlet property="IlanGorTakas2Lbl" destination="6Yb-SU-8MA" id="GWI-4S-bDV"/>
                         <outlet property="IlanGorTakas3Lbl" destination="cEw-iy-fSc" id="dtV-da-u8t"/>
+                        <outlet property="takasBtn" destination="x6o-rG-ZbO" id="2C3-VN-hAs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FN2-J8-ORb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
