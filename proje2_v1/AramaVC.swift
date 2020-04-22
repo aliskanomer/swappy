@@ -49,8 +49,8 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         if AramaTxt.text == "" {
             makeAlert(baslik: "Ups!", mesaj: TxtBarError)
         }else{
+            aramTableview.isHidden = true
             dataPull4Search()
-            aramTableview.isHidden = false
             aramTableview.reloadData()
         }
     }
@@ -77,6 +77,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                 if let arananTakas3 = doc.get("ilanTakas3") as? String{
                                                     if let arananAdres = doc.get("ilanAdres") as? String{
                                                         if let arananMail = doc.get("ilanKullanici") as? String{
+                                                            self.aramTableview.isHidden = false
                                                             self.AramaImgArray.append(arananImg)
                                                             self.AramaIsimArray.append(arananIsim)
                                                             self.AramaAdresArray.append(arananAdres)
