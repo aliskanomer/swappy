@@ -39,6 +39,11 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var sAEposta = ""
     
     //variables
+    override func viewWillAppear(_ animated: Bool) {
+        aramTableview.isHidden = true
+        sonucDetayLbl.isHidden = true
+        AramaTxt.text = ""
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         aramTableview.delegate = self
