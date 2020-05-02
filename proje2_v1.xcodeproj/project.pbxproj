@@ -143,6 +143,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD610D3C245E0C4300394D29 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ADA57FEA244A1970003C35CD /* ViewController.swift */,
+				ADA58022244A3AA3003C35CD /* AnaSayfaVC.swift */,
+				ADA58026244A3AB8003C35CD /* UrunlerimVC.swift */,
+				ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */,
+				ADA5801A244A3A7A003C35CD /* ProfilVC.swift */,
+				ADA5801E244A3A90003C35CD /* AramaVC.swift */,
+				ADA5802A244A3ACD003C35CD /* IlanOlusturVC.swift */,
+				ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AD610D3E245E0C9600394D29 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				ADA57FE6244A1970003C35CD /* AppDelegate.swift */,
+				ADA57FE8244A1970003C35CD /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		AD610D3F245E0CA200394D29 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				AD44BA83244A3F59004359DC /* AnaSayfaCell.swift */,
+				AD44BA87244A3F68004359DC /* UrunlerimCell.swift */,
+				ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		ADA57FDA244A1970003C35CD = {
 			isa = PBXGroup;
 			children = (
@@ -168,24 +202,14 @@
 		ADA57FE5244A1970003C35CD /* proje2_v1 */ = {
 			isa = PBXGroup;
 			children = (
-				ADA57FE6244A1970003C35CD /* AppDelegate.swift */,
-				ADA57FE8244A1970003C35CD /* SceneDelegate.swift */,
+				AD610D3F245E0CA200394D29 /* TableViewCells */,
+				AD610D3E245E0C9600394D29 /* Delegates */,
+				AD610D3C245E0C4300394D29 /* ViewControllers */,
 				ADA57FEC244A1970003C35CD /* Main.storyboard */,
-				ADA57FEA244A1970003C35CD /* ViewController.swift */,
-				ADA58022244A3AA3003C35CD /* AnaSayfaVC.swift */,
-				AD44BA83244A3F59004359DC /* AnaSayfaCell.swift */,
-				ADA58026244A3AB8003C35CD /* UrunlerimVC.swift */,
-				AD44BA87244A3F68004359DC /* UrunlerimCell.swift */,
-				ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */,
-				ADA5801A244A3A7A003C35CD /* ProfilVC.swift */,
-				ADA5801E244A3A90003C35CD /* AramaVC.swift */,
-				ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */,
-				ADA5802A244A3ACD003C35CD /* IlanOlusturVC.swift */,
-				ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */,
-				ADA57FEF244A1972003C35CD /* Assets.xcassets */,
 				ADA57FF1244A1972003C35CD /* LaunchScreen.storyboard */,
 				ADA58016244A1A50003C35CD /* GoogleService-Info.plist */,
 				ADA57FF4244A1972003C35CD /* Info.plist */,
+				ADA57FEF244A1972003C35CD /* Assets.xcassets */,
 			);
 			path = proje2_v1;
 			sourceTree = "<group>";
