@@ -16,7 +16,7 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     @IBOutlet weak var yeniUyeIsımTxt: UITextField!
     @IBOutlet weak var yeniUyeSifreTxt: UITextField!
     @IBOutlet weak var yeniUyeEmailTxt: UITextField!
-    var uye :  UyeStruct?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,16 +37,11 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
         if yeniUyeIsımTxt.text == "" || yeniUyeSifreTxt.text == "" || yeniUyeEmailTxt.text == ""{
             self.makeAlert(baslik: "Hata! ", mesaj: self.emptyFieldError)
         }else{
-            
-        }
-       
-        
-        
-        
+            //Kullanıcı verilerini database'e kaydetme
             let sto = Storage.storage()
             let stoRef = sto.reference()
             let ppGorselDoc = stoRef.child("kullaniciPP")
-        
+            
             if let ppData = yeniUyePPImg.image?.jpegData(compressionQuality: 0.5){
                 let ppID = UUID().uuidString
                 let ppRef = ppGorselDoc.child("\(ppID).jpeg")
@@ -54,46 +49,55 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
                     if error != nil{
                         self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.StorageUnkError)
                     }else{
-                            ppRef.downloadURL { (url, error) in
-                                if error == nil{
-                            
-                            //firestore referances
-                            
-                            let fsDB = Firestore.firestore()
-                            var fsRef : DocumentReference? = nil
-                            
-                            //data prep
-                            
-                            let ppImg = url?.absoluteString
-                           
-                            
-                        }
-                    }
-                }
-            }
-        }
+                        ppRef.downloadURL { (url, error) in
+                            if error == nil{
+                                //firestore referances
+                                let fsDB = Firestore.firestore()
+                                var fsRef : DocumentReference? = nil
+                                //data prep
+                                let PPImgURL = url?.absoluteString
+                                let uyeDic = [
+                                    "uyeEPosta" : self.yeniUyeEmailTxt.text!,
+                                    "uyeSifre" : self.yeniUyeSifreTxt.text!,
+                                    "uyeDisplayName" : self.yeniUyeIsımTxt.text!,
+                                    "uyePPImg" : PPImgURL!
+                                ] as [String:Any]
+                                //push
+                                fsRef = fsDB.collection("Uyeler").addDocument(data: uyeDic, completion: { (DBerror) in
+                                    if DBerror != nil{
+                                        self.makeAlert(baslik: "Hata", mesaj: DBerror?.localizedDescription ?? self.pushError)
+                                    }else{
+                                        
+                                        
+                                        /*if emailTxt.text != "" || sifreTxt.text != ""{
+                                            Auth.auth().createUser(withEmail: emailTxt.text!, password: sifreTxt.text!) { (signInData, error) in
+                                                if error != nil{
+                                                    self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Giriş hatası")
+                                                }else{
+                                                    self.performSegue(withIdentifier: "uyeOlustur2AnaSf", sender: nil)
+                                                }
+                                            }
+                                        }else{
+                                            makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
+                                        }*/
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }//push error kontrol çıkışı
+                                })//add dcoument completion block çıkışı
+                            }//url download error yoksa if çıkışı
+                        }//download url completion block çıkışı
+                    }//data put error else çıkışı
+                }//data put completion block çıkışı
+            }//görsel seçim if let çıkışı
+        }//Alan boş else çıkışı
         
-        
-        
-        
-        
-        /* if emailTxt.text != "" || sifreTxt.text != ""{
-                   Auth.auth().createUser(withEmail: emailTxt.text!, password: sifreTxt.text!) { (signInData, error) in
-                       if error != nil{
-                           self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Giriş hatası")
-                       }else{
-                           self.performSegue(withIdentifier: "toAnaSayfaVC", sender: nil)
-                       }
-                   }
-               }else{
-                   makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
-               }*/
-        //storage
-        
-        
-        
-        
-    }
+    }//btn_clicked çıkışı
     
     
     //selectors
@@ -140,5 +144,30 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     
     let StorageUnkError = "Görsel yüklenirken beklenmedik bir hata ile karşılaşıldı.Görselin iCloud saklama alanından iPhone'ununza yüklendiğinden emin olup tekrar deneyiniz."
     let emptyFieldError = "Tüm metin alanlarının doldurulması zorunludur"
+    let pushError = "Verilerin servera yüklenmesi sırasında bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniiz"
+    let uyeSuccess = "Yaşasın! Üyelik işlemlerin tamam. Bol şanslar!"
 
 }
+
+
+
+
+ 
+ 
+ 
+ /* if emailTxt.text != "" || sifreTxt.text != ""{
+            Auth.auth().createUser(withEmail: emailTxt.text!, password: sifreTxt.text!) { (signInData, error) in
+                if error != nil{
+                    self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Giriş hatası")
+                }else{
+                    self.performSegue(withIdentifier: "toAnaSayfaVC", sender: nil)
+                }
+            }
+        }else{
+            makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
+        }*/
+ //storage
+ 
+ 
+ 
+

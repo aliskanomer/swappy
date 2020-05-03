@@ -951,16 +951,16 @@
                         <outlet property="yeniUyeIsımTxt" destination="aEj-VJ-iE5" id="xsg-mP-FhU"/>
                         <outlet property="yeniUyePPImg" destination="9Aa-cx-ol1" id="EKu-5J-rwf"/>
                         <outlet property="yeniUyeSifreTxt" destination="do4-wp-tkv" id="TUz-RK-BFp"/>
-                        <segue destination="27J-T1-ol5" kind="presentation" identifier="uyeOlusturu2AnaSf" modalPresentationStyle="fullScreen" id="jfX-St-6qa"/>
+                        <segue destination="27J-T1-ol5" kind="presentation" identifier="uyeOlustur2AnaSf" modalPresentationStyle="fullScreen" id="JOa-n0-OJd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfI-iQ-2Vs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1495" y="1503"/>
+            <point key="canvasLocation" x="-1495" y="1162"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jfX-St-6qa"/>
+        <segue reference="JOa-n0-OJd"/>
         <segue reference="VN6-Hd-cNS"/>
     </inferredMetricsTieBreakers>
     <resources>

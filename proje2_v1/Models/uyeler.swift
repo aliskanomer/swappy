@@ -13,14 +13,6 @@ struct UyeStruct {
     var email : String
     var password : String
     var profileImg : String
-    var uyeDic : [String:Any]{
-        return [
-            "ePosta" : email,
-            "password" : password,
-            "profileImg" : profileImg,
-            "displayName" : displayName
-        ]
-    }
     
 }
 

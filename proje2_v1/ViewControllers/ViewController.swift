@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func uyeOlBtnClicked(_ sender: Any) {
-        if emailTxt.text != "" || sifreTxt.text != ""{
+        performSegue(withIdentifier: "yeniUyeOlusturSegue", sender: nil)
+        /*if emailTxt.text != "" || sifreTxt.text != ""{
             Auth.auth().createUser(withEmail: emailTxt.text!, password: sifreTxt.text!) { (signInData, error) in
                 if error != nil{
                     self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Giriş hatası")
@@ -44,7 +45,7 @@ class ViewController: UIViewController {
             }
         }else{
             makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
-        }
+        }*/
     }
     
     func makeAlert(baslik: String , mesaj: String){
