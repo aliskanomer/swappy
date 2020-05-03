@@ -30,6 +30,7 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         yeniIlanImgView.isUserInteractionEnabled = true
         let resimGest = UITapGestureRecognizer(target: self, action: #selector(ImagePick))
         yeniIlanImgView.addGestureRecognizer(resimGest)
+        bgImg()
     }
     
     
@@ -143,6 +144,20 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         alert.addAction(OKButton)
         self.present(alert,animated: true,completion: nil)
     }
+    
+    func bgImg(){
+        let bg = UIImage(named: "ilanOlusturPageBG")
+        var bgImgView : UIImageView!
+        bgImgView = UIImageView(frame: view.bounds)
+        bgImgView.contentMode = .scaleAspectFill
+        bgImgView.clipsToBounds = true
+        bgImgView.image = bg
+        bgImgView.center = view.center
+        view.addSubview(bgImgView)
+        self.view.sendSubviewToBack(bgImgView)
+        
+    }
+    
 
     //alert messages
     
