@@ -35,7 +35,7 @@ class IlanGoruntuleVC: UIViewController {
             IlanGorTakas1Lbl.text = ilan.takas1
             IlanGorTakas2Lbl.text = ilan.takas2
             IlanGorTakas3Lbl.text = ilan.takas3
-            IlanGorImgView.sd_setImage(with: URL(string: ilan.gorsel))
+            IlanGorImgView.sd_setImage(with: URL(string: ilan.gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
             if ilan.email == Auth.auth().currentUser?.email{
                 takasBtn.isHidden = true
             }

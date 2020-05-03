@@ -88,7 +88,7 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         cell.AnaSfCellIsımLbl.text = ilanArray[indexPath.row].isim
         
         cell.AnaSfCellTakas1Lbl.text = ilanArray[indexPath.row].takas1
-        cell.AnaSfCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel)) //Error Handling?
+        cell.AnaSfCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         return cell
     }
     

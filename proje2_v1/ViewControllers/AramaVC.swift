@@ -109,7 +109,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         cell.urunIsimLbl.text = ilanArray[indexPath.row].isim
         cell.aramaEposta.text = ilanArray[indexPath.row].email
         cell.aramaTakas1Lbl.text = ilanArray[indexPath.row].takas1
-        cell.aramaImg.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel))
+        cell.aramaImg.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         
         return cell
     }

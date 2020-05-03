@@ -89,7 +89,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         let cell = UrunlerimTableView.dequeueReusableCell(withIdentifier: "UrunlerimCellID", for: indexPath) as! UrunlerimCell
         cell.UrunlerimCellIsımLbl.text = ilanArray[indexPath.row].isim
         cell.UrunlerimCellTakas1Lbl.text = ilanArray[indexPath.row].takas1
-        cell.UrunlerimCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel))
+        cell.UrunlerimCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         return cell
     }
     

@@ -33,7 +33,7 @@ class UrunlerimDetailVC: UIViewController {
             urunTakas2Lbl.text = ilan.takas2
             urunTakas3Lbl.text = ilan.takas3
             urunAdresLbl.text = ilan.adres
-            urunImg.sd_setImage(with: URL(string: ilan.gorsel))
+            urunImg.sd_setImage(with: URL(string: ilan.gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         }
         
 
