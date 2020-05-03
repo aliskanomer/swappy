@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bgImg()
         let klavyeGest = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(klavyeGest)
     }
@@ -54,6 +55,18 @@ class ViewController: UIViewController {
     }
     @objc func hideKeyboard(){
         view.endEditing(true)
+    }
+    func bgImg(){
+        let bg = UIImage(named: "splashPageBG")
+        var bgImgView : UIImageView!
+        bgImgView = UIImageView(frame: view.bounds)
+        bgImgView.contentMode = .scaleAspectFill
+        bgImgView.clipsToBounds = true
+        bgImgView.image = bg
+        bgImgView.center = view.center
+        view.addSubview(bgImgView)
+        self.view.sendSubviewToBack(bgImgView)
+        
     }
 }
 

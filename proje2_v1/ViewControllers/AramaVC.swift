@@ -17,28 +17,10 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var AramaTxt: UITextField!
     @IBOutlet weak var aramTableview: UITableView!
     @IBOutlet weak var sonucDetayLbl: UILabel!
-    
-    //tableView Arrays
-    
-    var AramaIsimArray = [String]()
-    var AramaEpostaArray = [String]()
-    var AramaImgArray = [String]()
-    var AramaAdresArray = [String]()
-    var AramaTakas1Array = [String]()
-    var AramaTakas2Array = [String]()
-    var AramaTakas3Array = [String]()
-    
-    //transfer variables
-    
-    var sAIsim = ""
-    var sAT1 = ""
-    var sAT2 = ""
-    var sAT3 = ""
-    var sAImg = ""
-    var sAadres = ""
-    var sAEposta = ""
-    
-    //variables
+
+    var ilanArray = [ilanModel]()
+    var arananIlan : ilanModel?
+
     override func viewWillAppear(_ animated: Bool) {
         aramTableview.isHidden = true
         sonucDetayLbl.isHidden = true
@@ -76,7 +58,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                         print("Error")//herhangi bi ürün bulamadığında da buraya giriyor filtrete uymayan ürünlere bakınca da buraya giriyo
                     }else{
                         if snapshot?.isEmpty != true && snapshot != nil{
-                            self.diziTemizle()
+                            self.ilanArray.removeAll(keepingCapacity: false)
                             self.aramTableview.isHidden = false
                             
                             for doc in snapshot!.documents{
@@ -92,13 +74,9 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                                 self.sonucDetayLbl.isHidden = false
                                                                 self.sonucDetayLbl.text = "Arama Sonucunda \(count) ürün bulundu"
                                                             }
-                                                            self.AramaImgArray.append(arananImg)
-                                                            self.AramaIsimArray.append(arananIsim)
-                                                            self.AramaAdresArray.append(arananAdres)
-                                                            self.AramaEpostaArray.append(arananMail)
-                                                            self.AramaTakas1Array.append(arananTakas1)
-                                                            self.AramaTakas2Array.append(arananTakas2)
-                                                            self.AramaTakas3Array.append(arananTakas3)
+                                                        
+                                                            let ilan = ilanModel(isim: arananIsim, gorsel: arananImg, adres: arananAdres, email: arananMail, takas1: arananTakas1, takas2: arananTakas2, takas3: arananTakas3)
+                                                            self.ilanArray.append(ilan)
                                                         }
                                                     }
                                                 }
@@ -119,7 +97,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 //Row number setting func
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AramaImgArray.count
+        return ilanArray.count
     }
     
     
@@ -128,10 +106,10 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = aramTableview.dequeueReusableCell(withIdentifier: "aramaCellID", for: indexPath) as! AramaCell
         //cellde gösterilecek olan verileri diziden aktar
-        cell.urunIsimLbl.text = AramaIsimArray[indexPath.row]
-        cell.aramaEposta.text = AramaEpostaArray[indexPath.row]
-        cell.aramaTakas1Lbl.text = AramaTakas1Array[indexPath.row]
-        cell.aramaImg.sd_setImage(with: URL(string: AramaImgArray[indexPath.row]))
+        cell.urunIsimLbl.text = ilanArray[indexPath.row].isim
+        cell.aramaEposta.text = ilanArray[indexPath.row].email
+        cell.aramaTakas1Lbl.text = ilanArray[indexPath.row].takas1
+        cell.aramaImg.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel))
         
         return cell
     }
@@ -140,13 +118,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //transfer verilerine diziden verileri aktar
-        self.sAIsim = AramaIsimArray[indexPath.row]
-        self.sAT1 = AramaTakas1Array[indexPath.row]
-        self.sAT2 = AramaTakas2Array[indexPath.row]
-        self.sAT3 = AramaTakas3Array[indexPath.row]
-        self.sAImg = AramaImgArray[indexPath.row]
-        self.sAadres = AramaAdresArray[indexPath.row]
-        self.sAEposta = AramaEpostaArray[indexPath.row]
+        arananIlan = self.ilanArray[indexPath.row]
         performSegue(withIdentifier: "araToGoruntuleVC", sender: nil)
     }
     
@@ -156,25 +128,8 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         if segue.identifier == "araToGoruntuleVC"{
             let destinationVC = segue.destination as! IlanGoruntuleVC
-            destinationVC.sIsim = self.sAIsim
-            destinationVC.sAdres = self.sAadres
-            destinationVC.sEposta = self.sAEposta
-            destinationVC.sT1 = self.sAT1
-            destinationVC.sT2 = self.sAT2
-            destinationVC.sT3 = self.sAT3
-            destinationVC.sImg = self.sAImg
+            destinationVC.secilmisIlan = self.arananIlan
         }
-    }
-    
-//self functions
-    func diziTemizle(){
-        self.AramaImgArray.removeAll(keepingCapacity: false)
-        self.AramaIsimArray.removeAll(keepingCapacity: false)
-        self.AramaAdresArray.removeAll(keepingCapacity: false)
-        self.AramaEpostaArray.removeAll(keepingCapacity: false)
-        self.AramaTakas1Array.removeAll(keepingCapacity: false)
-        self.AramaTakas2Array.removeAll(keepingCapacity: false)
-        self.AramaTakas3Array.removeAll(keepingCapacity: false)
     }
     
     func makeAlert(baslik: String , mesaj: String){

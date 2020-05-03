@@ -10,17 +10,10 @@ import UIKit
 import Firebase
 import SDWebImage
 class UrunlerimDetailVC: UIViewController {
-    //messages
-    let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
-    let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
+   
     //data transfer variables
-    var sUDIsim = ""
-    var sUDT1 = ""
-    var sUDT2 = ""
-    var sUDT3 = ""
-    var sUDImg = "" //url aktarıldı
-    var sUDID = "" //ID aktarıldı String olarak
-    var SUDAdres = ""
+    var secilmisIlan : ilanModel?
+    var sUDID = ""
     //elements
     @IBOutlet weak var urunImg: UIImageView!
     @IBOutlet weak var urunısimLbl: UILabel!
@@ -34,12 +27,15 @@ class UrunlerimDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        urunısimLbl.text = sUDIsim
-        urunTakas1Lbl.text = sUDT1
-        urunTakas2Lbl.text = sUDT2
-        urunTakas3Lbl.text = sUDT3
-        urunAdresLbl.text = SUDAdres
-        urunImg.sd_setImage(with: URL(string: sUDImg))
+        if let ilan = secilmisIlan{
+            urunısimLbl.text = ilan.isim
+            urunTakas1Lbl.text = ilan.takas1
+            urunTakas2Lbl.text = ilan.takas2
+            urunTakas3Lbl.text = ilan.takas3
+            urunAdresLbl.text = ilan.adres
+            urunImg.sd_setImage(with: URL(string: ilan.gorsel))
+        }
+        
 
     }
 
@@ -78,4 +74,7 @@ class UrunlerimDetailVC: UIViewController {
         alert.addAction(OKButton)
         self.present(alert,animated: true,completion: nil)
     }
+    //messages
+       let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
+       let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
 }

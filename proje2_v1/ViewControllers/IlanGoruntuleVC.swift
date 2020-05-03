@@ -22,26 +22,26 @@ class IlanGoruntuleVC: UIViewController {
     @IBOutlet weak var takasBtn: UIButton!
     
     //data Transfer variables (4_nill_handling)
-    var sAdres = ""
-    var sIsim = ""
-    var sEposta = ""
-    var sT1 = ""
-    var sT2 = ""
-    var sT3 = ""
-    var sImg = "" //URL GELDİ
+    
+    var secilmisIlan : ilanModel?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        IlanGorIsımLbl.text = sIsim
-        IlanGorAdresLbl.text = sAdres
-        IlanGorEpostaLbl.text = sEposta
-        IlanGorTakas1Lbl.text = sT1
-        IlanGorTakas2Lbl.text = sT2
-        IlanGorTakas3Lbl.text = sT3
-        IlanGorImgView.sd_setImage(with: URL(string: sImg))//URLden img set ediliyor
-            if sEposta == Auth.auth().currentUser?.email{
+        if let ilan = secilmisIlan{
+            IlanGorIsımLbl.text = ilan.isim
+            IlanGorAdresLbl.text = ilan.adres
+            IlanGorEpostaLbl.text = ilan.email
+            IlanGorTakas1Lbl.text = ilan.takas1
+            IlanGorTakas2Lbl.text = ilan.takas2
+            IlanGorTakas3Lbl.text = ilan.takas3
+            IlanGorImgView.sd_setImage(with: URL(string: ilan.gorsel))
+            if ilan.email == Auth.auth().currentUser?.email{
                 takasBtn.isHidden = true
             }
+        }else{
+            print("beepboop")
+        }
     }
     
     @IBAction func ilanGorTakasBtnClicked(_ sender: Any) {

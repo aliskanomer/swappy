@@ -11,23 +11,10 @@ import Firebase
 import SDWebImage
 class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     //Arrays 4 TableView
-    var UrunIsmiArray = [String]()
-    var UrunGorselArray = [String]()//IlanOluştur.swift-Line:52->57
-    var UrunTakas1Array = [String]()
-    var UrunTakas2Array = [String]()
-    var UrunTakas3Array = [String]()
-    var UrunAdresArray = [String]()
-    var UrunEpostaArray = [String]()
     var UrunIDArray = [String]()
-    
-    //Variables for segue 2 Ilan Kaldrı VC
-    var sUIsim = ""
-    var sUT1 = ""
-    var sUT2 = ""
-    var sUT3 = ""
-    var sUImg = ""
     var sUID = ""
-    var sUAdres = ""
+    var ilanArray = [ilanModel]()
+    var secilenUrun : ilanModel?
     
     @IBOutlet weak var UrunlerimTableView: UITableView!
     override func viewDidLoad() {
@@ -47,7 +34,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                     
                     //data reset on arrays
                     
-                    self.diziTemizle()
+                    self.ilanArray.removeAll(keepingCapacity: false)
                     
                     //User check > for loop > users data pull request
                     if Auth.auth().currentUser != nil {
@@ -71,13 +58,8 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
                                                             if let UrunTakas3 = doc.get("ilanTakas3") as? String{
                                                                     //Push data 2 Arrays
                                                                     
-                                                                    self.UrunGorselArray.append(UrunImg)
-                                                                    self.UrunIsmiArray.append(UrunIsim)
-                                                                    self.UrunAdresArray.append(UrunAdres)
-                                                                    self.UrunEpostaArray.append(UrunEmail)
-                                                                    self.UrunTakas1Array.append(UrunTakas1)
-                                                                    self.UrunTakas2Array.append(UrunTakas2)
-                                                                    self.UrunTakas3Array.append(UrunTakas3)
+                                                                    let ilan = ilanModel(isim: UrunIsim, gorsel: UrunImg, adres: UrunAdres, email: UrunEmail, takas1: UrunTakas1, takas2: UrunTakas2, takas3: UrunTakas3)
+                                                                self.ilanArray.append(ilan)
                                                                     self.UrunIDArray.append(doc.documentID)
                                                             }
                                                         }
@@ -98,29 +80,24 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 //Row number setting func
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UrunGorselArray.count
+        return ilanArray.count
     }
     
 //Cell data setting Func
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UrunlerimTableView.dequeueReusableCell(withIdentifier: "UrunlerimCellID", for: indexPath) as! UrunlerimCell
-        cell.UrunlerimCellIsımLbl.text = UrunIsmiArray[indexPath.row]
-        cell.UrunlerimCellTakas1Lbl.text = UrunTakas1Array[indexPath.row]
-        cell.UrunlerimCellImgView.sd_setImage(with: URL(string: UrunGorselArray[indexPath.row]))
+        cell.UrunlerimCellIsımLbl.text = ilanArray[indexPath.row].isim
+        cell.UrunlerimCellTakas1Lbl.text = ilanArray[indexPath.row].takas1
+        cell.UrunlerimCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel))
         return cell
     }
     
 //Selected Cell Data -> Variables
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.sUIsim = UrunIsmiArray[indexPath.row]
-        self.sUT1 =  UrunTakas1Array[indexPath.row]
-        self.sUT2 = UrunTakas2Array[indexPath.row]
-        self.sUT3 = UrunTakas3Array[indexPath.row]
-        self.sUImg = UrunGorselArray[indexPath.row]
         self.sUID = UrunIDArray[indexPath.row]
-        self.sUAdres = UrunAdresArray[indexPath.row]
+        secilenUrun = self.ilanArray[indexPath.row]
         performSegue(withIdentifier: "UrunlerimToUrunDetailVC", sender: nil)
     }
     
@@ -129,25 +106,11 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UrunlerimToUrunDetailVC"{
             let destinationVC = segue.destination as! UrunlerimDetailVC
-            destinationVC.sUDIsim = self.sUIsim
-            destinationVC.sUDT1 = self.sUT1
-            destinationVC.sUDT2 = self.sUT2
-            destinationVC.sUDT3 = self.sUT3
-            destinationVC.sUDImg = self.sUImg
+            destinationVC.secilmisIlan = self.secilenUrun
             destinationVC.sUDID = self.sUID
-            destinationVC.SUDAdres = self.sUAdres
         }
     }
     
 //Self funcitons
-    func diziTemizle(){
-        self.UrunGorselArray.removeAll(keepingCapacity: false)
-        self.UrunIsmiArray.removeAll(keepingCapacity: false)
-        self.UrunAdresArray.removeAll(keepingCapacity: false)
-        self.UrunEpostaArray.removeAll(keepingCapacity: false)
-        self.UrunTakas1Array.removeAll(keepingCapacity: false)
-        self.UrunTakas2Array.removeAll(keepingCapacity: false)
-        self.UrunTakas3Array.removeAll(keepingCapacity: false)
-    }
 
 }
