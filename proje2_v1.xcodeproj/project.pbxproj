@@ -77,7 +77,7 @@
 		AD44BA83244A3F59004359DC /* AnaSayfaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaCell.swift; sourceTree = "<group>"; };
 		AD44BA87244A3F68004359DC /* UrunlerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrunlerimCell.swift; sourceTree = "<group>"; };
 		AD610D41245E0D8500394D29 /* Ilanlar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ilanlar.swift; sourceTree = "<group>"; };
-		ADA57FE3244A1970003C35CD /* proje2_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proje2_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADA57FE3244A1970003C35CD /* Swappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA57FE6244A1970003C35CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADA57FE8244A1970003C35CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		ADA57FEA244A1970003C35CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 		ADA57FE4244A1970003C35CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADA57FE3244A1970003C35CD /* proje2_v1.app */,
+				ADA57FE3244A1970003C35CD /* Swappy.app */,
 				ADA57FF9244A1972003C35CD /* proje2_v1Tests.xctest */,
 				ADA58004244A1972003C35CD /* proje2_v1UITests.xctest */,
 			);
@@ -275,7 +275,7 @@
 			);
 			name = proje2_v1;
 			productName = proje2_v1;
-			productReference = ADA57FE3244A1970003C35CD /* proje2_v1.app */;
+			productReference = ADA57FE3244A1970003C35CD /* Swappy.app */;
 			productType = "com.apple.product-type.application";
 		};
 		ADA57FF8244A1972003C35CD /* proje2_v1Tests */ = {
@@ -711,7 +711,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "omerfarukaliskan.proje2-v1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swappy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -730,7 +730,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "omerfarukaliskan.proje2-v1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swappy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
