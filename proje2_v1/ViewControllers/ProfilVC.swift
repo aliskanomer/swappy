@@ -10,9 +10,12 @@ import UIKit
 import Firebase
 class ProfilVC: UIViewController {
     @IBOutlet weak var epostaLbl: UILabel!
+    @IBOutlet weak var displayNameLbl: UILabel!
+    @IBOutlet weak var userPPImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bgImg()
         epostaLbl.text = Auth.auth().currentUser?.email
         // Do any additional setup after loading the view.
     }
@@ -25,5 +28,18 @@ class ProfilVC: UIViewController {
             //firebase signout error handling araştır
             print("Error")
         }
+    }
+    
+    func bgImg(){
+        let bg = UIImage(named: "ProfileBG")
+        var bgImgView : UIImageView!
+        bgImgView = UIImageView(frame: view.bounds)
+        bgImgView.contentMode = .scaleAspectFill
+        bgImgView.clipsToBounds = true
+        bgImgView.image = bg
+        bgImgView.center = view.center
+        view.addSubview(bgImgView)
+        self.view.sendSubviewToBack(bgImgView)
+        
     }
 }
