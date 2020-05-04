@@ -16,7 +16,6 @@
 		AD44BA89244A3F68004359DC /* UrunlerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44BA87244A3F68004359DC /* UrunlerimCell.swift */; };
 		AD44BA8A244A3F68004359DC /* UrunlerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44BA87244A3F68004359DC /* UrunlerimCell.swift */; };
 		AD610D42245E0D8500394D29 /* Ilanlar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD610D41245E0D8500394D29 /* Ilanlar.swift */; };
-		AD8C407F245F60DA00FF9D13 /* uyeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8C407E245F60DA00FF9D13 /* uyeler.swift */; };
 		AD8C4081245F646000FF9D13 /* yeniUyeOlusturVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8C4080245F646000FF9D13 /* yeniUyeOlusturVC.swift */; };
 		ADA57FE7244A1970003C35CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA57FE6244A1970003C35CD /* AppDelegate.swift */; };
 		ADA57FE9244A1970003C35CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA57FE8244A1970003C35CD /* SceneDelegate.swift */; };
@@ -79,7 +78,6 @@
 		AD44BA83244A3F59004359DC /* AnaSayfaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaCell.swift; sourceTree = "<group>"; };
 		AD44BA87244A3F68004359DC /* UrunlerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrunlerimCell.swift; sourceTree = "<group>"; };
 		AD610D41245E0D8500394D29 /* Ilanlar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ilanlar.swift; sourceTree = "<group>"; };
-		AD8C407E245F60DA00FF9D13 /* uyeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uyeler.swift; sourceTree = "<group>"; };
 		AD8C4080245F646000FF9D13 /* yeniUyeOlusturVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yeniUyeOlusturVC.swift; sourceTree = "<group>"; };
 		ADA57FE3244A1970003C35CD /* Swappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA57FE6244A1970003C35CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				AD610D41245E0D8500394D29 /* Ilanlar.swift */,
-				AD8C407E245F60DA00FF9D13 /* uyeler.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,7 +514,6 @@
 				ADA57FE9244A1970003C35CD /* SceneDelegate.swift in Sources */,
 				AD44BA88244A3F68004359DC /* UrunlerimCell.swift in Sources */,
 				AD610D42245E0D8500394D29 /* Ilanlar.swift in Sources */,
-				AD8C407F245F60DA00FF9D13 /* uyeler.swift in Sources */,
 				ADC7F6E4244F6EFA008AA14E /* AramaCell.swift in Sources */,
 				ADA5801F244A3A90003C35CD /* AramaVC.swift in Sources */,
 			);
