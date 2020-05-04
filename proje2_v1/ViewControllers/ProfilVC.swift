@@ -34,11 +34,10 @@ class ProfilVC: UIViewController {
     
     func getUserInfo(){
         if Auth.auth().currentUser != nil{
-            let currentUserEmail = Auth.auth().currentUser?.email
-            
+            let Eposta = Auth.auth().currentUser!.email!
             let fsDBRef = Firestore.firestore()
             fsDBRef.collection("Uyeler")
-                .whereField("uyeEPosta", isEqualTo: currentUserEmail!)
+                .whereField("uyeEPosta", isEqualTo: Eposta)
                 .getDocuments { (snapshot, error) in
                     if error != nil{
                         self.makeAlert(baslik: "Ups!", mesaj: error?.localizedDescription ?? "Bir şeyler ters gitti! Tekrar dene.")
@@ -49,7 +48,7 @@ class ProfilVC: UIViewController {
                             for doc in snapshot!.documents{
                                 if let currentUyePP = doc.get("uyePPImg") as? String{
                                     if let currentUyeDispName = doc.get("uyeDisplayName") as? String{
-                                        if let currentUyeEPosta = doc.get("uyeEposta") as? String{
+                                        if let currentUyeEPosta = doc.get("uyeEPosta") as? String{
                                             self.epostaLbl.text = currentUyeEPosta
                                             self.displayNameLbl.text = currentUyeDispName
                                             self.userPPImg.sd_setImage(with: URL(string: currentUyePP), placeholderImage: UIImage(named: "uyePPDefault"))
