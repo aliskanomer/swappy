@@ -71,6 +71,7 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
                             //data prep
                             let PPImgURL = url?.absoluteString
                             let uyeDic = [
+                                "uyeID" : UUID().uuidString,
                                 "uyeEPosta" : self.yeniUyeEmailTxt.text!,
                                 "uyeSifre" : self.yeniUyeSifreTxt.text!,
                                 "uyeDisplayName" : self.yeniUyeIsımTxt.text!,
