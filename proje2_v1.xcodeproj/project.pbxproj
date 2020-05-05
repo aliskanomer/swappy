@@ -15,6 +15,9 @@
 		AD44BA88244A3F68004359DC /* UrunlerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44BA87244A3F68004359DC /* UrunlerimCell.swift */; };
 		AD44BA89244A3F68004359DC /* UrunlerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44BA87244A3F68004359DC /* UrunlerimCell.swift */; };
 		AD44BA8A244A3F68004359DC /* UrunlerimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44BA87244A3F68004359DC /* UrunlerimCell.swift */; };
+		AD5FF15824612A0E00A20CF0 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FF15724612A0E00A20CF0 /* ChatVC.swift */; };
+		AD5FF15B24612C3A00A20CF0 /* chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FF15A24612C3A00A20CF0 /* chat.swift */; };
+		AD5FF15D24612C4A00A20CF0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FF15C24612C4A00A20CF0 /* Message.swift */; };
 		AD610D42245E0D8500394D29 /* Ilanlar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD610D41245E0D8500394D29 /* Ilanlar.swift */; };
 		AD8C4081245F646000FF9D13 /* yeniUyeOlusturVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8C4080245F646000FF9D13 /* yeniUyeOlusturVC.swift */; };
 		ADA57FE7244A1970003C35CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA57FE6244A1970003C35CD /* AppDelegate.swift */; };
@@ -77,6 +80,9 @@
 		6E465755749EFDE4345EA121 /* Pods_proje2_v1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proje2_v1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD44BA83244A3F59004359DC /* AnaSayfaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaSayfaCell.swift; sourceTree = "<group>"; };
 		AD44BA87244A3F68004359DC /* UrunlerimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrunlerimCell.swift; sourceTree = "<group>"; };
+		AD5FF15724612A0E00A20CF0 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		AD5FF15A24612C3A00A20CF0 /* chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chat.swift; sourceTree = "<group>"; };
+		AD5FF15C24612C4A00A20CF0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AD610D41245E0D8500394D29 /* Ilanlar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ilanlar.swift; sourceTree = "<group>"; };
 		AD8C4080245F646000FF9D13 /* yeniUyeOlusturVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yeniUyeOlusturVC.swift; sourceTree = "<group>"; };
 		ADA57FE3244A1970003C35CD /* Swappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,18 +153,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD5FF15924612A2A00A20CF0 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FF15A24612C3A00A20CF0 /* chat.swift */,
+				AD5FF15C24612C4A00A20CF0 /* Message.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		AD610D3C245E0C4300394D29 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				ADA57FEA244A1970003C35CD /* ViewController.swift */,
-				ADA58022244A3AA3003C35CD /* AnaSayfaVC.swift */,
-				ADA58026244A3AB8003C35CD /* UrunlerimVC.swift */,
 				ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */,
+				ADA58026244A3AB8003C35CD /* UrunlerimVC.swift */,
+				ADA58022244A3AA3003C35CD /* AnaSayfaVC.swift */,
 				ADA5801A244A3A7A003C35CD /* ProfilVC.swift */,
 				AD8C4080245F646000FF9D13 /* yeniUyeOlusturVC.swift */,
 				ADA5801E244A3A90003C35CD /* AramaVC.swift */,
 				ADA5802A244A3ACD003C35CD /* IlanOlusturVC.swift */,
 				ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */,
+				AD5FF15724612A0E00A20CF0 /* ChatVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -185,6 +201,7 @@
 		AD610D40245E0CE900394D29 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FF15924612A2A00A20CF0 /* Messages */,
 				AD610D41245E0D8500394D29 /* Ilanlar.swift */,
 			);
 			path = Models;
@@ -271,6 +288,7 @@
 				ADA57FE0244A1970003C35CD /* Frameworks */,
 				ADA57FE1244A1970003C35CD /* Resources */,
 				140BAA4899AE633D24857840 /* [CP] Embed Pods Frameworks */,
+				A4D6901C66DB6AC985BF545E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,6 +327,7 @@
 				ADA58001244A1972003C35CD /* Frameworks */,
 				ADA58002244A1972003C35CD /* Resources */,
 				16D8E9AACFF941DA153FA1AF /* [CP] Embed Pods Frameworks */,
+				4CB129AC2CB76F7777C53BBE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -428,6 +447,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-proje2_v1-proje2_v1UITests/Pods-proje2_v1-proje2_v1UITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4CB129AC2CB76F7777C53BBE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proje2_v1-proje2_v1UITests/Pods-proje2_v1-proje2_v1UITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proje2_v1-proje2_v1UITests/Pods-proje2_v1-proje2_v1UITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-proje2_v1-proje2_v1UITests/Pods-proje2_v1-proje2_v1UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5792E6EEF4C5C87B61BBADA6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +508,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A4D6901C66DB6AC985BF545E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proje2_v1/Pods-proje2_v1-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proje2_v1/Pods-proje2_v1-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-proje2_v1/Pods-proje2_v1-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C12D4371D9FCD86B914A73F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,7 +554,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5FF15B24612C3A00A20CF0 /* chat.swift in Sources */,
+				AD5FF15824612A0E00A20CF0 /* ChatVC.swift in Sources */,
 				AD8C4081245F646000FF9D13 /* yeniUyeOlusturVC.swift in Sources */,
+				AD5FF15D24612C4A00A20CF0 /* Message.swift in Sources */,
 				ADA57FEB244A1970003C35CD /* ViewController.swift in Sources */,
 				ADA5802F244A3ADF003C35CD /* IlanGoruntuleVC.swift in Sources */,
 				ADA5802B244A3ACD003C35CD /* IlanOlusturVC.swift in Sources */,

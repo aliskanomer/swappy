@@ -11,6 +11,10 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'FirebaseFirestoreSwift'
 pod 'SDWebImage', '~> 5.0'
+pod 'MessageKit'
+pod 'Firebase/Core'
+pod 'GoogleSignIn'
+
   # Pods for proje2_v1
 
   target 'proje2_v1Tests' do
