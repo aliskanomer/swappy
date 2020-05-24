@@ -39,7 +39,9 @@ extension Message {
         self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName)
     }
 }
+
 //message kit için gerekli extensionlar
+
 extension Message: MessageType {
     
     var sender: SenderType {

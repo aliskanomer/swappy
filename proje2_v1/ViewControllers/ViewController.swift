@@ -54,9 +54,11 @@ class ViewController: UIViewController {
            alert.addAction(OKButton)
            self.present(alert,animated: true,completion: nil)
     }
+    
     @objc func hideKeyboard(){
         view.endEditing(true)
     }
+    
     func bgImg(){
         let bg = UIImage(named: "splashPageBG")
         var bgImgView : UIImageView!

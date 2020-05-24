@@ -23,6 +23,7 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         UrunlerimTableView.delegate = self
         UrunlerimPullDataFromFS()
     }
+    
     func UrunlerimPullDataFromFS(){
         let uFsDb = Firestore.firestore()
         uFsDb.collection("Ilanlar")

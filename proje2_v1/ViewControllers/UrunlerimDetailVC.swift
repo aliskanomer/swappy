@@ -12,9 +12,12 @@ import SDWebImage
 class UrunlerimDetailVC: UIViewController {
    
     //data transfer variables
+    
     var secilmisIlan : ilanModel?
     var sUDID = ""
+    
     //elements
+    
     @IBOutlet weak var urunImg: UIImageView!
     @IBOutlet weak var urunısimLbl: UILabel!
     @IBOutlet weak var urunTakas1Lbl: UILabel!
@@ -68,13 +71,16 @@ class UrunlerimDetailVC: UIViewController {
         
         
     }
+    
     func makeAlert(baslik: String , mesaj: String){
         let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
         let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(OKButton)
         self.present(alert,animated: true,completion: nil)
     }
-    //messages
+    
+//messages
+    
        let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
        let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
 }

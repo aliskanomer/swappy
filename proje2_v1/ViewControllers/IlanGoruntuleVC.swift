@@ -78,7 +78,14 @@ class IlanGoruntuleVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChatVC"{
             let destinationVC = segue.destination as! ChatVC
-            destinationVC.ilanSahibiUye = ilanSahibi
+            if let ilanOwner = ilanSahibi{
+                destinationVC.ilanSahibiUye = ilanOwner
+                destinationVC.user2ImgUrl = ilanOwner.uyePPImg
+                destinationVC.user2Name = ilanOwner.uyeDisplayName
+                destinationVC.user2UID = ilanOwner.uyeID
+            }
+            
+        
             
         }
         

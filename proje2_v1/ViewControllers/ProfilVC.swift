@@ -30,8 +30,7 @@ class ProfilVC: UIViewController {
             print("Error")
         }
     }
-    
-    
+
     func getUserInfo(){
         if Auth.auth().currentUser != nil{
             let Eposta = Auth.auth().currentUser!.email!
@@ -69,8 +68,7 @@ class ProfilVC: UIViewController {
            alert.addAction(OKButton)
            self.present(alert,animated: true,completion: nil)
        }
-    
-    
+
     func bgImg(){
         let bg = UIImage(named: "ProfileBG")
         var bgImgView : UIImageView!

@@ -17,6 +17,7 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //Variables for segue 2 IlanGoruntuleVC
 
     @IBOutlet weak var AnaSayfaTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AnaSayfaTableView.delegate = self
@@ -107,7 +108,4 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             destinationVC.secilmisIlan = self.secilenIlan
         }
     }
-    
-
-
 }

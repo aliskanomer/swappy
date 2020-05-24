@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 struct UyeModel{
     var uyeDisplayName : String
     var uyeEPosta : String

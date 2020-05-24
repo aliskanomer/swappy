@@ -99,8 +99,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ilanArray.count
     }
-    
-    
+
 //Cell data setting func
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -138,9 +137,8 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         alert.addAction(OKButton)
         self.present(alert,animated: true,completion: nil)
     }
-    
-    
-    //messages
+
+//messages
     
     let TxtBarError = "Görünen o ki aramak için bir kelime girmedin! Bir şeyler yazıp tekrar dener misin?"
     let urunBulunamadıMsg = "Aradığın ürünü malesef bulamadık. İsmi doğru yazdığından emin misin?"

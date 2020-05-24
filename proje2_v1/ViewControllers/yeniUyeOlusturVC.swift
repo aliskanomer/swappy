@@ -49,8 +49,6 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
         
     }//btn_clicked çıkışı
     
-    
-    
     func uyeDbKayit(){
         let sto = Storage.storage()
         let stoRef = sto.reference()
@@ -91,19 +89,7 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
             }//data put completion block çıkışı
         }//görsel seçim if let çıkışı
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     //selectors
     
     @objc func ImagePick(){
