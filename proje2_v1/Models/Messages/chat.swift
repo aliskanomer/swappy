@@ -7,21 +7,6 @@
 //
 
 import Foundation
+import UIKit
 
-
-
-struct Chat {
-    var kullaniciArray : [String]
-    var chatModeldictionary : [String : Any]{
-        return ["chattekiKullanicilar" : kullaniciArray]
-    }
-}
-extension Chat{
-    init?(dictionary : [String:Any]){
-        guard let chattekiKullanicilar = dictionary["chattekiKullanicilar"] as? [String] else {
-            return nil
-        }
-        self.init(kullaniciArray : chattekiKullanicilar)
-    }
-}
 

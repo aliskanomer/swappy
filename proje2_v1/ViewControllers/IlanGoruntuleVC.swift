@@ -24,8 +24,8 @@ class IlanGoruntuleVC: UIViewController {
     //data Transfer variables (4_nill_handling)
     
     var secilmisIlan : ilanModel?
+    var ilanSahibi : UyeModel?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let ilan = secilmisIlan{
@@ -42,12 +42,47 @@ class IlanGoruntuleVC: UIViewController {
         }else{
             print("beepboop")
         }
+        pullUyeDataFromFS()
     }
-    
+    func pullUyeDataFromFS(){
+        if let ilan = secilmisIlan{
+            let fireStoreRef = Firestore.firestore()
+            fireStoreRef.collection("Uyeler")
+                .whereField("uyeEPosta", isEqualTo: ilan.email).addSnapshotListener { (snapshot, snapshotError) in
+                    if snapshotError != nil{
+                        print("Error")
+                    }else{
+                        if snapshot?.isEmpty != true && snapshot != nil{
+                            for doc in snapshot!.documents{
+                                if let uyeName = doc.get("uyeDisplayName") as? String{
+                                    if let uyeMail = doc.get("uyeEPosta") as? String{
+                                        if let uyeid = doc.get("uyeID") as? String{
+                                            if let uyePP = doc.get("uyePPImg") as? String{
+                                                let ilanUye = UyeModel(uyeDisplayName: uyeName, uyeEPosta: uyeMail, uyeID: uyeid, uyePPImg: uyePP)
+                                                self.ilanSahibi = ilanUye
+                                                //snapshotta verileri aktarıyor
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+        
+    }
     @IBAction func ilanGorTakasBtnClicked(_ sender: Any) {
-        //mesajlaşma sayfasına segue?
+        performSegue(withIdentifier: "toChatVC", sender: nil)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toChatVC"{
+            let destinationVC = segue.destination as! ChatVC
+            destinationVC.ilanSahibiUye = ilanSahibi
+            
+        }
+        
+    }
 
 
 }

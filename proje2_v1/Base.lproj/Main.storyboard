@@ -549,6 +549,7 @@
                         <outlet property="IlanGorTakas2Lbl" destination="6Yb-SU-8MA" id="GWI-4S-bDV"/>
                         <outlet property="IlanGorTakas3Lbl" destination="cEw-iy-fSc" id="dtV-da-u8t"/>
                         <outlet property="takasBtn" destination="x6o-rG-ZbO" id="2C3-VN-hAs"/>
+                        <segue destination="RFb-sB-eFj" kind="presentation" identifier="toChatVC" modalPresentationStyle="fullScreen" id="s7R-ky-xpn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FN2-J8-ORb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -971,12 +972,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gk7-UO-atX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3082" y="340"/>
+            <point key="canvasLocation" x="3080.8000000000002" y="339.58020989505252"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JOa-n0-OJd"/>
-        <segue reference="VN6-Hd-cNS"/>
+        <segue reference="ia8-NM-JaC"/>
+        <segue reference="Com-Jr-IX4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TakaslaBtn" width="343" height="53"/>

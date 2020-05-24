@@ -53,6 +53,7 @@
 		ADC7F6E4244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
 		ADC7F6E5244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
 		ADC7F6E6244F6EFA008AA14E /* AramaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */; };
+		ADF55CC9247A55C100D823CA /* Uyeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF55CC8247A55C100D823CA /* Uyeler.swift */; };
 		DF0623B314626EAB5D355A0E /* Pods_proje2_v1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E465755749EFDE4345EA121 /* Pods_proje2_v1.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		ADA5802E244A3ADF003C35CD /* IlanGoruntuleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlanGoruntuleVC.swift; sourceTree = "<group>"; };
 		ADC2F19E244CCD0800BDAFB5 /* UrunlerimDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrunlerimDetailVC.swift; sourceTree = "<group>"; };
 		ADC7F6E3244F6EFA008AA14E /* AramaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AramaCell.swift; sourceTree = "<group>"; };
+		ADF55CC8247A55C100D823CA /* Uyeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uyeler.swift; sourceTree = "<group>"; };
 		B1B836A7AE68E2FBB9FF987C /* Pods_proje2_v1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proje2_v1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62A7C3F44AB39AD4A2823B8 /* Pods-proje2_v1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proje2_v1Tests.debug.xcconfig"; path = "Target Support Files/Pods-proje2_v1Tests/Pods-proje2_v1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9058A4CA0190E448A1E8F13 /* Pods_proje2_v1_proje2_v1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proje2_v1_proje2_v1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 		AD610D40245E0CE900394D29 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ADF55CC8247A55C100D823CA /* Uyeler.swift */,
 				AD5FF15924612A2A00A20CF0 /* Messages */,
 				AD610D41245E0D8500394D29 /* Ilanlar.swift */,
 			);
@@ -572,6 +575,7 @@
 				AD610D42245E0D8500394D29 /* Ilanlar.swift in Sources */,
 				ADC7F6E4244F6EFA008AA14E /* AramaCell.swift in Sources */,
 				ADA5801F244A3A90003C35CD /* AramaVC.swift in Sources */,
+				ADF55CC9247A55C100D823CA /* Uyeler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

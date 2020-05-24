@@ -9,14 +9,16 @@
 import UIKit
 import MessageKit
 
-class ChatVC: MessagesViewController{
 
+class ChatVC: MessagesViewController{
+    
+    var ilanSahibiUye : UyeModel? //üyeye ait veriler ilan görüntüle içerisinden buraya prepare for segue ile aktarıldı. Uye modelin de ki tüm verilere ulaşılabiliyor.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         
     }
-    
+
 
 
 }
