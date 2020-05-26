@@ -17,8 +17,11 @@ class ProfilVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bgImg()
-        getUserInfo()
-        // Do any additional setup after loading the view.
+        if let currentUser = Auth.auth().currentUser{ //opsiyonel kaldırma
+            displayNameLbl.text = currentUser.displayName
+            epostaLbl.text = currentUser.email
+            userPPImg.sd_setImage(with: currentUser.photoURL, placeholderImage: UIImage(named: "uyePPDefault") )
+        }
     }
     
     @IBAction func cikisBtnClicked(_ sender: Any) {
@@ -30,37 +33,6 @@ class ProfilVC: UIViewController {
             print("Error")
         }
     }
-
-    func getUserInfo(){
-        if Auth.auth().currentUser != nil{
-            let Eposta = Auth.auth().currentUser!.email!
-            let fsDBRef = Firestore.firestore()
-            fsDBRef.collection("Uyeler")
-                .whereField("uyeEPosta", isEqualTo: Eposta)
-                .getDocuments { (snapshot, error) in
-                    if error != nil{
-                        self.makeAlert(baslik: "Ups!", mesaj: error?.localizedDescription ?? "Bir şeyler ters gitti! Tekrar dene.")
-                    }else{
-                        if snapshot?.isEmpty ==  true || snapshot == nil{
-                            self.makeAlert(baslik: "Ups", mesaj: error?.localizedDescription ?? "Bir şeyler ters gitti! Tekrar dene.")
-                        }else{
-                            for doc in snapshot!.documents{
-                                if let currentUyePP = doc.get("uyePPImg") as? String{
-                                    if let currentUyeDispName = doc.get("uyeDisplayName") as? String{
-                                        if let currentUyeEPosta = doc.get("uyeEPosta") as? String{
-                                            self.epostaLbl.text = currentUyeEPosta
-                                            self.displayNameLbl.text = currentUyeDispName
-                                            self.userPPImg.sd_setImage(with: URL(string: currentUyePP), placeholderImage: UIImage(named: "uyePPDefault"))
-                                        }
-                                    }
-                                }
-                            }
-                        }//snapshot not nill
-                    }//snapshot error
-            }//get documents
-        }//current user nil
-        
-    }//end of func
     
     func makeAlert(baslik: String , mesaj: String){
            let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)

@@ -17,6 +17,7 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     @IBOutlet weak var yeniUyeSifreTxt: UITextField!
     @IBOutlet weak var yeniUyeEmailTxt: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,53 +43,67 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
                     self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Oluşturma hatası")
                 }else{
                     /*Auth kayıt >>başarılıysa>> DB Kayıt >>Başarılıysa>> performSegue 2 AnaSayfa*/
-                    self.uyeDbKayit()
+                    if let newUser = signInData{
+                            let sto = Storage.storage()
+                            let stoRef = sto.reference()
+                            let ppGorselDoc = stoRef.child("kullaniciPP")
+                            
+                            if let ppData = self.yeniUyePPImg.image?.jpegData(compressionQuality: 0.5){
+                                let ppID = UUID().uuidString
+                                let ppRef = ppGorselDoc.child("\(ppID).jpeg")
+                                ppRef.putData(ppData, metadata: nil) { (metadata, error) in
+                                    if error != nil{
+                                        self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.StorageUnkError)
+                                    }else{
+                                        ppRef.downloadURL { (url, error) in
+                                            if error == nil{
+                                                //firestore referances
+                                                let fsDB = Firestore.firestore()
+                                                var fsRef : DocumentReference? = nil
+                                                //data prep
+                                                let changeReq = newUser.user.createProfileChangeRequest()
+                                                changeReq.displayName = self.yeniUyeIsımTxt.text!
+                                                changeReq.photoURL = url
+                                                changeReq.commitChanges { (error) in
+                                                    if error == nil{
+                                                        if let DispName = changeReq.displayName{
+                                                            if let imgUrl = changeReq.photoURL{
+                                                                if let email = newUser.user.email{
+                                                                    if let newUseruid = newUser.user.uid as? String{
+                                                                        let newMember = UyeModel(uyeDisplayName: DispName, uyeEPosta: email, uyeID: newUseruid, uyePPImg: imgUrl.absoluteString)
+                                                                        let uyeDic = [
+                                                                            "uyeID" : newMember.uyeID,
+                                                                            "uyeEPosta" : newMember.uyeEPosta,
+                                                                            "uyeSifre" : self.yeniUyeSifreTxt.text!,
+                                                                            "uyeDisplayName" : newMember.uyeDisplayName,
+                                                                            "uyePPImg" : newMember.uyePPImg
+                                                                        ] as [String:Any]
+                                                                        //push
+                                                                        fsRef = fsDB.collection("Uyeler").addDocument(data: uyeDic, completion: { (DBerror) in
+                                                                            if DBerror != nil{
+                                                                                self.makeAlert(baslik: "Hata", mesaj: DBerror?.localizedDescription ?? self.pushError)
+                                                                            }else{
+                                                                                self.performSegue(withIdentifier: "uyeOlustur2AnaSf", sender: nil)
+                                                                            }//push error kontrol çıkışı
+                                                                        })//add dcoument completion block çıkışı
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }//changeReq completion block çıkışı
+                                            }//url download error yoksa if çıkışı
+                                        }//download url completion block çıkışı
+                                    }//data put error else çıkışı
+                                }//data put completion block çıkışı
+                            }//görsel seçim if let çıkışı
+                    }
                 }
             }
         }//Alan boş else çıkışı
         
     }//btn_clicked çıkışı
     
-    func uyeDbKayit(){
-        let sto = Storage.storage()
-        let stoRef = sto.reference()
-        let ppGorselDoc = stoRef.child("kullaniciPP")
-        
-        if let ppData = yeniUyePPImg.image?.jpegData(compressionQuality: 0.5){
-            let ppID = UUID().uuidString
-            let ppRef = ppGorselDoc.child("\(ppID).jpeg")
-            ppRef.putData(ppData, metadata: nil) { (metadata, error) in
-                if error != nil{
-                    self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.StorageUnkError)
-                }else{
-                    ppRef.downloadURL { (url, error) in
-                        if error == nil{
-                            //firestore referances
-                            let fsDB = Firestore.firestore()
-                            var fsRef : DocumentReference? = nil
-                            //data prep
-                            let PPImgURL = url?.absoluteString
-                            let uyeDic = [
-                                "uyeID" : UUID().uuidString,
-                                "uyeEPosta" : self.yeniUyeEmailTxt.text!,
-                                "uyeSifre" : self.yeniUyeSifreTxt.text!,
-                                "uyeDisplayName" : self.yeniUyeIsımTxt.text!,
-                                "uyePPImg" : PPImgURL!
-                            ] as [String:Any]
-                            //push
-                            fsRef = fsDB.collection("Uyeler").addDocument(data: uyeDic, completion: { (DBerror) in
-                                if DBerror != nil{
-                                    self.makeAlert(baslik: "Hata", mesaj: DBerror?.localizedDescription ?? self.pushError)
-                                }else{
-                                    self.performSegue(withIdentifier: "uyeOlustur2AnaSf", sender: nil)
-                                }//push error kontrol çıkışı
-                            })//add dcoument completion block çıkışı
-                        }//url download error yoksa if çıkışı
-                    }//download url completion block çıkışı
-                }//data put error else çıkışı
-            }//data put completion block çıkışı
-        }//görsel seçim if let çıkışı
-    }
 
     //selectors
     

@@ -46,7 +46,20 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     //FİREBASE VE MESAJLAŞMA FONKSİYONLARI
     
     func createChat(){
+        let users = [self.currentUser.uid, self.user2UID]
+        let data: [String: Any] = [
+            "users":users
+        ]
         
+        let db = Firestore.firestore().collection("Chats")
+        db.addDocument(data: data) { (error) in
+            if let error = error {
+                print("Unable to create chat! \(error)")
+                return
+            } else {
+                self.loadChat()
+            }
+        }
     } //yeni bir konuşma başlatma
     
     func loadChat(){
@@ -142,7 +155,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         if messages.count == 0{
-            print("No Messages Found")
+            print("Chat geçmişi bulunamadı")
             return 0
         }else{
             return messages.count

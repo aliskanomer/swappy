@@ -45,6 +45,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             aramTableview.reloadData()
         }
     }
+    
     func dataPull4Search(){
         if AramaTxt.text != ""{
             
