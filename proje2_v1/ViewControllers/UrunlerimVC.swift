@@ -77,15 +77,11 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             }
         }
     }
-    
-//Row number setting func
-    
+
+    //TableView Protocols & Segue Function
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ilanArray.count
     }
-    
-//Cell data setting Func
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UrunlerimTableView.dequeueReusableCell(withIdentifier: "UrunlerimCellID", for: indexPath) as! UrunlerimCell
         cell.UrunlerimCellIsımLbl.text = ilanArray[indexPath.row].isim
@@ -93,17 +89,11 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         cell.UrunlerimCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         return cell
     }
-    
-//Selected Cell Data -> Variables
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.sUID = UrunIDArray[indexPath.row]
         secilenUrun = self.ilanArray[indexPath.row]
         performSegue(withIdentifier: "UrunlerimToUrunDetailVC", sender: nil)
     }
-    
-//Variables -> SegueVC Data Variables
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "UrunlerimToUrunDetailVC"{
             let destinationVC = segue.destination as! UrunlerimDetailVC
@@ -111,7 +101,4 @@ class UrunlerimVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.sUDID = self.sUID
         }
     }
-    
-//Self funcitons
-
 }

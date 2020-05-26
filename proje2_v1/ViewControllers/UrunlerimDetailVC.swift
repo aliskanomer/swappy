@@ -11,13 +11,11 @@ import Firebase
 import SDWebImage
 class UrunlerimDetailVC: UIViewController {
    
-    //data transfer variables
-    
+    //Variables
     var secilmisIlan : ilanModel?
     var sUDID = ""
     
-    //elements
-    
+    //Elements
     @IBOutlet weak var urunImg: UIImageView!
     @IBOutlet weak var urunısimLbl: UILabel!
     @IBOutlet weak var urunTakas1Lbl: UILabel!
@@ -79,8 +77,7 @@ class UrunlerimDetailVC: UIViewController {
         self.present(alert,animated: true,completion: nil)
     }
     
-//messages
-    
-       let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
-       let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
+    //messages
+    let deleteSuccess = "Tamamdır! İlanını sildik. Sayfayı aşağı doğru çekerek geri dönebilrisin!"
+    let deleteError = "Bir hata ile karşılaştık. Bu uzak sunucudan kaynaklı bir hata olabilir. Daha sonra tekrar dene!"
 }

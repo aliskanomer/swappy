@@ -10,17 +10,17 @@ import UIKit
 import Firebase
 import SDWebImage
 class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    
     //elements
-    
     @IBOutlet weak var AramaLbl: UILabel!
     @IBOutlet weak var AramaTxt: UITextField!
     @IBOutlet weak var aramTableview: UITableView!
     @IBOutlet weak var sonucDetayLbl: UILabel!
 
+    //variables
     var ilanArray = [ilanModel]()
     var arananIlan : ilanModel?
 
+    //lifeCycle
     override func viewWillAppear(_ animated: Bool) {
         aramTableview.isHidden = true
         sonucDetayLbl.isHidden = true
@@ -46,6 +46,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         }
     }
     
+    //FireBase veri çekme
     func dataPull4Search(){
         if AramaTxt.text != ""{
             
@@ -95,14 +96,10 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         }// + -
     }//func ends
     
-//Row number setting func
-    
+    //TableView Protocols & Segue Function
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ilanArray.count
     }
-
-//Cell data setting func
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = aramTableview.dequeueReusableCell(withIdentifier: "aramaCellID", for: indexPath) as! AramaCell
         //cellde gösterilecek olan verileri diziden aktar
@@ -113,17 +110,11 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         return cell
     }
-    
-//Selected Cell Data -> Variables
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //transfer verilerine diziden verileri aktar
         arananIlan = self.ilanArray[indexPath.row]
         performSegue(withIdentifier: "araToGoruntuleVC", sender: nil)
     }
-    
-//Variables -> SegueVC Data Variables
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "araToGoruntuleVC"{
@@ -131,7 +122,6 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             destinationVC.secilmisIlan = self.arananIlan
         }
     }
-    
     func makeAlert(baslik: String , mesaj: String){
         let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
         let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
@@ -139,8 +129,7 @@ class AramaVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         self.present(alert,animated: true,completion: nil)
     }
 
-//messages
-    
+    //messages
     let TxtBarError = "Görünen o ki aramak için bir kelime girmedin! Bir şeyler yazıp tekrar dener misin?"
     let urunBulunamadıMsg = "Aradığın ürünü malesef bulamadık. İsmi doğru yazdığından emin misin?"
     

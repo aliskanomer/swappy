@@ -30,7 +30,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     }
 
     //aksiyonlar
-    
     @IBAction func IlanVerBtnClicked(_ sender: Any) {       ///görsel>storage --> storage>görsel urls + data > firestore
         if Auth.auth().currentUser != nil{
             if yeniIlanIsimTxt.text == "" || yeniIlanAdresTxt.text == "" || yeniIlanTakas1Txt.text == "" || yeniIlanTakas2Txt.text == "" || yeniIlanTakas3Txt.text == "" {
@@ -86,7 +85,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     }//btn out
 
     //fonksiyonlar
-    
     @objc func ImagePick(){
         let imgPicker = UIImagePickerController()
         imgPicker.delegate = self
@@ -98,18 +96,15 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         yeniIlanImgView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
-    
     @objc func hideKeyboard(){
            view.endEditing(true)
     }
-    
     func makeAlert(baslik: String , mesaj: String){
         let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
         let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(OKButton)
         self.present(alert,animated: true,completion: nil)
     }
-    
     func bgImg(){
         let bg = UIImage(named: "ilanOlusturPageBG")
         var bgImgView : UIImageView!
@@ -122,7 +117,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         self.view.sendSubviewToBack(bgImgView)
         
     }
-    
     func FieldClean(){
         //field reset
         self.yeniIlanImgView.image = UIImage(systemName: "plus")
@@ -135,7 +129,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     }
     
     //alert messages
-    
     let StorageUnkError = "Görsel yüklenirken beklenmedik bir hata ile karşılaşıldı.Görselin iCloud saklama alanından iPhone'ununza yüklendiğinden emin olup tekrar deneyiniz."
     let cloudPullReqError = "Görsel uzak sunucudan çekilirken bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniz"
     let pushError = "Verilerin servera yüklenmesi sırasında bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniiz"

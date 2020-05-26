@@ -11,7 +11,6 @@ import SDWebImage
 import Firebase
 class IlanGoruntuleVC: UIViewController {
     //elements
-    
     @IBOutlet weak var IlanGorIsımLbl: UILabel!
     @IBOutlet weak var IlanGorImgView: UIImageView!
     @IBOutlet weak var IlanGorAdresLbl: UILabel!
@@ -21,8 +20,7 @@ class IlanGoruntuleVC: UIViewController {
     @IBOutlet weak var IlanGorTakas3Lbl: UILabel!
     @IBOutlet weak var takasBtn: UIButton!
     
-    //data Transfer variables (4_nill_handling)
-    
+    //variables
     var secilmisIlan : ilanModel?
     var ilanSahibi : UyeModel?
 
@@ -44,6 +42,7 @@ class IlanGoruntuleVC: UIViewController {
         }
         pullUyeDataFromFS()
     }
+    
     func pullUyeDataFromFS(){
         if let ilan = secilmisIlan{
             let fireStoreRef = Firestore.firestore()
@@ -72,9 +71,11 @@ class IlanGoruntuleVC: UIViewController {
         }
         
     }
+    
     @IBAction func ilanGorTakasBtnClicked(_ sender: Any) {
         performSegue(withIdentifier: "toChatVC", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChatVC"{
             let destinationVC = segue.destination as! ChatVC
@@ -84,12 +85,6 @@ class IlanGoruntuleVC: UIViewController {
                 destinationVC.user2Name = ilanOwner.uyeDisplayName
                 destinationVC.user2UID = ilanOwner.uyeID
             }
-            
-        
-            
         }
-        
     }
-
-
 }

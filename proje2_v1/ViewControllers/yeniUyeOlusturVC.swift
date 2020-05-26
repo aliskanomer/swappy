@@ -103,10 +103,8 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
         }//Alan boş else çıkışı
         
     }//btn_clicked çıkışı
-    
 
     //selectors
-    
     @objc func ImagePick(){
         let imgPicker = UIImagePickerController()
         imgPicker.delegate = self
@@ -114,7 +112,6 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
         imgPicker.allowsEditing = false
         present(imgPicker,animated: true,completion: nil)
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         yeniUyePPImg.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
@@ -124,7 +121,6 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     }
     
     //Funcitons
-    
     func bgImg(imgName: String){
         let bg = UIImage(named: imgName)
         var bgImgView : UIImageView!
@@ -137,7 +133,6 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
         self.view.sendSubviewToBack(bgImgView)
         
     }
-    
     func makeAlert(baslik: String , mesaj: String){
            let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
            let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
@@ -146,33 +141,8 @@ class yeniUyeOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavig
        }
        
     //messages
-    
     let StorageUnkError = "Görsel yüklenirken beklenmedik bir hata ile karşılaşıldı.Görselin iCloud saklama alanından iPhone'ununza yüklendiğinden emin olup tekrar deneyiniz."
     let emptyFieldError = "Tüm metin alanlarının doldurulması zorunludur"
     let pushError = "Verilerin servera yüklenmesi sırasında bir hata ile karşılaşıldı.Bu sunucu kaynaklı bir problem olabilir. Lütfen daha sonra tekrar deneyiniiz"
     let uyeSuccess = "Yaşasın! Üyelik işlemlerin tamam. Bol şanslar!"
-
 }
-
-
-
-
- 
- 
- 
- /* if emailTxt.text != "" || sifreTxt.text != ""{
-            Auth.auth().createUser(withEmail: emailTxt.text!, password: sifreTxt.text!) { (signInData, error) in
-                if error != nil{
-                    self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? "Kullanıcı Giriş hatası")
-                }else{
-                    self.performSegue(withIdentifier: "toAnaSayfaVC", sender: nil)
-                }
-            }
-        }else{
-            makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
-        }*/
- //storage
- 
- 
- 
-

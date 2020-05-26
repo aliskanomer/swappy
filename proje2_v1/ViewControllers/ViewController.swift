@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 class ViewController: UIViewController {
+    //Elements
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var sifreTxt: UITextField!
     
@@ -18,7 +19,8 @@ class ViewController: UIViewController {
         let klavyeGest = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(klavyeGest)
     }
-
+    
+    //Actions
     @IBAction func girisBtnClicked(_ sender: Any) {
         if emailTxt.text != "" || sifreTxt.text != ""{
             Auth.auth().signIn(withEmail: emailTxt.text!, password: sifreTxt.text!) { (logInData, error) in
@@ -32,7 +34,6 @@ class ViewController: UIViewController {
             makeAlert(baslik: "Hata", mesaj: "E-posta ve/veya şifre alanları boş bırakılamaz")
         }
     }
-    
     @IBAction func uyeOlBtnClicked(_ sender: Any) {
         performSegue(withIdentifier: "yeniUyeOlusturSegue", sender: nil)
         /*if emailTxt.text != "" || sifreTxt.text != ""{
@@ -48,17 +49,10 @@ class ViewController: UIViewController {
         }*/
     }
     
-    func makeAlert(baslik: String , mesaj: String){
-           let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
-           let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
-           alert.addAction(OKButton)
-           self.present(alert,animated: true,completion: nil)
-    }
-    
+    //Functions & Selectors
     @objc func hideKeyboard(){
         view.endEditing(true)
     }
-    
     func bgImg(){
         let bg = UIImage(named: "splashPageBG")
         var bgImgView : UIImageView!
@@ -70,6 +64,12 @@ class ViewController: UIViewController {
         view.addSubview(bgImgView)
         self.view.sendSubviewToBack(bgImgView)
         
+    }
+    func makeAlert(baslik: String , mesaj: String){
+           let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
+           let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
+           alert.addAction(OKButton)
+           self.present(alert,animated: true,completion: nil)
     }
 }
 

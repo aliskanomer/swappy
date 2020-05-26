@@ -11,15 +11,14 @@ import MessageKit
 import Firebase
 import SDWebImage
 import InputBarAccessoryView
+
 class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataSource,MessagesLayoutDelegate,MessagesDisplayDelegate{
     
+    //variables
     var ilanSahibiUye : UyeModel?
-    
-    
     var currentUser : User = Auth.auth().currentUser!
     var messages : [Message] = [] //[Message] message.swift dosyasında tanımlanan struct
     private var docReference : DocumentReference?
-
     var user2Name : String = ""
     var user2ImgUrl : String = ""
     var user2UID : String = ""
@@ -44,7 +43,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     }
     
     //FİREBASE VE MESAJLAŞMA FONKSİYONLARI
-    
     func createChat(){
         let users = [self.currentUser.uid, self.user2UID]
         let data: [String: Any] = [
@@ -61,7 +59,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
             }
         }
     } //yeni bir konuşma başlatma
-    
     func loadChat(){
         let db = Firestore.firestore()
             .collection("Chats")
@@ -105,7 +102,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
             }
             }
         }//Eski konuşma varsa geri yükleme
-    
     private func insertNewMessage(_ message : Message){
         messages.append(message)
         messagesCollectionView.reloadData()
@@ -113,7 +109,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
             self.messagesCollectionView.scrollToBottom(animated: true)
         }
     } //yeni bir mesajı eklemek
-    
     private func save(_ message : Message){
         //verinin FireStorea yazılması için hazırlanaması
         let data : [String:Any] = [
@@ -134,7 +129,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     }//Mesajların firebase'e kaydedilmesini sağlayan method
     
     //DELEGATE FONKSİYONLARI VE PROTOCOLLER
-    
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName)
         insertNewMessage(message)
@@ -144,15 +138,12 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom(animated: true)
     }//Gönder butonuna tıklanıldığında çağırılan method
-    
     func currentSender() -> SenderType {
         return Sender(id:Auth.auth().currentUser!.uid, displayName: currentUserDispName ?? "TEST")
     } //SenderType Protocol CURRENT USER DİSP NAME ALMAN LAZIM
-
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
     }//MessagesCollectionView Protocol
-    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         if messages.count == 0{
             print("Chat geçmişi bulunamadı")
@@ -161,15 +152,12 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
             return messages.count
         }
     }//MessagesCollectionView Protocol
-    
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return .zero //default avatar boyunun döndürülmesini sağlıyor.
     } //MessagesLayoutDelegate Protocol
-    
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .orange: .lightGray
     } //MessageBubbleColor Protocol RENK İÇİN BAK
-    
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
 
         if message.sender.senderId == currentUser.uid{
@@ -182,7 +170,6 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
             }
         }
     } //CURRENT USER IMG URL ALINMALI
-    
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         let corner : MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(corner, .curved)

@@ -34,13 +34,13 @@ class ProfilVC: UIViewController {
         }
     }
     
+    //functions
     func makeAlert(baslik: String , mesaj: String){
            let alert = UIAlertController(title: baslik, message: mesaj, preferredStyle: UIAlertController.Style.alert)
            let OKButton = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
            alert.addAction(OKButton)
            self.present(alert,animated: true,completion: nil)
        }
-
     func bgImg(){
         let bg = UIImage(named: "ProfileBG")
         var bgImgView : UIImageView!

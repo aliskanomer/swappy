@@ -11,11 +11,11 @@ import Firebase
 import SDWebImage
 
 class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    //variables
     var ilanArray = [ilanModel]()
     var secilenIlan : ilanModel?
     
-    //Variables for segue 2 IlanGoruntuleVC
-
+    //elements
     @IBOutlet weak var AnaSayfaTableView: UITableView!
     
     override func viewDidLoad() {
@@ -75,15 +75,11 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
     }
     
-//Row number setting func
-    
+    //TableView Protocols & Segue Function
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return ilanGorselArray.count
         return ilanArray.count
     }
-    
-//Cell data setting func
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = AnaSayfaTableView.dequeueReusableCell(withIdentifier: "AnaSayfaCellID", for: indexPath) as! AnaSayfaCell
         cell.AnaSfCellIsımLbl.text = ilanArray[indexPath.row].isim
@@ -92,16 +88,10 @@ class AnaSayfaVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         cell.AnaSfCellImgView.sd_setImage(with: URL(string: ilanArray[indexPath.row].gorsel), placeholderImage: UIImage(named: "ilanGorselDefault"))
         return cell
     }
-    
-//Selected Cell Data -> Variables
-   
-   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     secilenIlan = self.ilanArray[indexPath.row]
        performSegue(withIdentifier: "anaSayfaToGoruntuleVC", sender: nil)
    }
-    
-//Variables -> SegueVC Data Variables
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "anaSayfaToGoruntuleVC"{
             let destinationVC = segue.destination as! IlanGoruntuleVC
