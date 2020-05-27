@@ -18,7 +18,7 @@ class ProfilVC: UIViewController {
         super.viewDidLoad()
         bgImg()
         if let currentUser = Auth.auth().currentUser{ //opsiyonel kaldırma
-            displayNameLbl.text = currentUser.displayName
+            displayNameLbl.text = currentUser.uid
             epostaLbl.text = currentUser.email
             userPPImg.sd_setImage(with: currentUser.photoURL, placeholderImage: UIImage(named: "uyePPDefault") )
         }

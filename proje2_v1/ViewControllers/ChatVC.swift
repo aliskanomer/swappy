@@ -19,10 +19,10 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     var currentUser : User = Auth.auth().currentUser!
     var messages : [Message] = [] //[Message] message.swift dosyasında tanımlanan struct
     private var docReference : DocumentReference?
+    //veriler aslında IlanGoruntule Segueden geliyor ama opsiyonelle uğraşmamak için default değerleri nill
     var user2Name : String = ""
     var user2ImgUrl : String = ""
     var user2UID : String = ""
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
                                         self.messages.removeAll()
                                         for message in threadQuery!.documents{
                                             let msg = Message(dictionary: message.data())
-                                            self.messages.append(msg!)
+                                            self.messages.append(msg!) //FATAL ERROR
                                             print("Data: \(msg?.content ?? "Mesaj Bulunamadı")")
                                         }
                                         self.messagesCollectionView.reloadData()
@@ -110,34 +110,39 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
         }
     } //yeni bir mesajı eklemek
     private func save(_ message : Message){
-        //verinin FireStorea yazılması için hazırlanaması
         let data : [String:Any] = [
             "content" : message.content,
             "created" : message.created,
             "id" : message.id,
             "senderID" : message.senderID,
-            "senderName" : message.senderName
+            "senderName" : message.senderName,
+            "senderImgUrl" : message.senderImg,
+            "recieverID" : message.recieverID,
+            "recieverName" : message.recieverName,
+            "recieverImg" : message.recieverImg
         ]
-        //doc referanceın global tanımlanmasının sebebi loadchatte çağırılıp burada yüklenebilmesi
         docReference?.collection("thread").addDocument(data: data, completion: { (error) in
             if let error = error{
                 print("Error \(error)")
                 return
             }
             self.messagesCollectionView.scrollToBottom()
-        })//end of completion
+        })
     }//Mesajların firebase'e kaydedilmesini sağlayan method
     
     //DELEGATE FONKSİYONLARI VE PROTOCOLLER
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if let currentUserDispName =  Auth.auth().currentUser?.displayName{
-            let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName)
-            insertNewMessage(message)
-            save(message)
-            //input alanının göndere tıklandıktan sonra temizlenmesi
-            inputBar.inputTextView.text = ""
-            messagesCollectionView.reloadData()
-            messagesCollectionView.scrollToBottom(animated: true)
+            if let senderImgURL = currentUser.photoURL{
+                let senderImgS = senderImgURL.absoluteString
+                let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName ,senderImg:senderImgS,recieverID: user2UID,recieverName: user2Name,recieverImg: user2ImgUrl)
+                insertNewMessage(message)
+                save(message)
+                //input alanının göndere tıklandıktan sonra temizlenmesi
+                inputBar.inputTextView.text = ""
+                messagesCollectionView.reloadData()
+                messagesCollectionView.scrollToBottom(animated: true)
+            }
         }
     }//Gönder butonuna tıklanıldığında çağırılan method
     func currentSender() -> SenderType {

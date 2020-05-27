@@ -81,9 +81,9 @@ class IlanGoruntuleVC: UIViewController {
             let destinationVC = segue.destination as! ChatVC
             if let ilanOwner = ilanSahibi{
                 destinationVC.ilanSahibiUye = ilanOwner
-                destinationVC.user2ImgUrl = ilanOwner.uyePPImg
-                destinationVC.user2Name = ilanOwner.uyeDisplayName
-                destinationVC.user2UID = ilanOwner.uyeID
+                destinationVC.user2ImgUrl = ilanOwner.uyePPImg //"https://firebasestorage.googleapis.com/v0/b/proje2-v1.appspot.com/o/kullaniciPP%2FDF470392-D225-40FE-9A07-BB8D5E609D5A.jpeg?alt=media&token=c11b9767-7b57-459d-9876-cab48171fe8b"
+                destinationVC.user2Name = ilanOwner.uyeDisplayName //"Ali Duru"
+                destinationVC.user2UID = ilanOwner.uyeID //"rijGmsuQCQZNRPV71d47HgUNLg02"
             }
         }
     }
