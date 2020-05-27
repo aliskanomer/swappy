@@ -23,7 +23,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     var user2ImgUrl : String = ""
     var user2UID : String = ""
     
-    var currentUserDispName =  "TEST" //bunu çekmen lazım !!!!!!!!!!!!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,16 +130,18 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     
     //DELEGATE FONKSİYONLARI VE PROTOCOLLER
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName)
-        insertNewMessage(message)
-        save(message)
-        //input alanının göndere tıklandıktan sonra temizlenmesi
-        inputBar.inputTextView.text = ""
-        messagesCollectionView.reloadData()
-        messagesCollectionView.scrollToBottom(animated: true)
+        if let currentUserDispName =  Auth.auth().currentUser?.displayName{
+            let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName)
+            insertNewMessage(message)
+            save(message)
+            //input alanının göndere tıklandıktan sonra temizlenmesi
+            inputBar.inputTextView.text = ""
+            messagesCollectionView.reloadData()
+            messagesCollectionView.scrollToBottom(animated: true)
+        }
     }//Gönder butonuna tıklanıldığında çağırılan method
     func currentSender() -> SenderType {
-        return Sender(id:Auth.auth().currentUser!.uid, displayName: currentUserDispName ?? "TEST")
+        return Sender(id:Auth.auth().currentUser!.uid, displayName: currentUser.displayName ?? "Chat")
     } //SenderType Protocol CURRENT USER DİSP NAME ALMAN LAZIM
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
@@ -161,7 +163,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
 
         if message.sender.senderId == currentUser.uid{
-            SDWebImageManager.shared.loadImage(with: URL(string: user2ImgUrl) , options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageURL) in
+            SDWebImageManager.shared.loadImage(with: currentUser.photoURL , options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageURL) in
                 avatarView.image = image //burada image current user için çekilmeli
             }
         }else{
