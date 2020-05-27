@@ -31,53 +31,57 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
 
     //aksiyonlar
     @IBAction func IlanVerBtnClicked(_ sender: Any) {       ///görsel>storage --> storage>görsel urls + data > firestore
-        if Auth.auth().currentUser != nil{
-                let st = Storage.storage()
-                let stRef = st.reference()
-                let ilanGorselDoc = stRef.child("ilanGorselleri")
-                if let imgData = yeniIlanImgView.image?.jpegData(compressionQuality: 0.5){
-                    let imgID = UUID().uuidString
-                    let imgRef = ilanGorselDoc.child("\(imgID).jpeg")
-                    imgRef.putData(imgData, metadata: nil) { (metadata, error) in
-                        if error != nil{
-                            self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.StorageUnkError)
-                        }else{
-                            imgRef.downloadURL { (url, error) in
-                                if error == nil{
-                                    //doc refs
-                                    let fireStoreDatabase = Firestore.firestore()
-                                    var fsRef : DocumentReference? = nil
-                                    //data prep 4 push
-                                    if url != nil {
-                                        if let ilanImgString = url?.absoluteString{
-                                            let yeniIlan = ilanModel( isim: self.yeniIlanIsimTxt.text!, gorsel: ilanImgString, adres: self.yeniIlanAdresTxt.text!, email: Auth.auth().currentUser!.email!, takas1: self.yeniIlanTakas1Txt.text!, takas2: self.yeniIlanTakas2Txt.text!, takas3: self.yeniIlanTakas3Txt.text!)
-                                            let fsIlanDic = [
-                                                "ilanImgUrl" : yeniIlan.gorsel,
-                                                "ilanKullanici" : yeniIlan.email,
-                                                "ilanIsmi" : yeniIlan.isim,
-                                                "ilanAdres" : yeniIlan.adres,
-                                                "ilanTakas1" : yeniIlan.takas1,
-                                                "ilanTakas2" : yeniIlan.takas2,
-                                                "ilanTakas3" : yeniIlan.takas3,
-                                                "date" : FieldValue.serverTimestamp()
-                                            ] as [String:Any] /*key(fsd key val):val(data val from user)*/
-                                            
-                                            fsRef = fireStoreDatabase.collection("Ilanlar").addDocument(data: fsIlanDic, completion: { (databaseError) in
-                                                if databaseError != nil{
-                                                    self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.pushError)
-                                                }else{
-                                                    self.makeAlert(baslik: "Tamamdır", mesaj: self.ilanUploadSuccess)
-                                                    self.FieldClean()
-                                                }
-                                            })//addDocument Completion
-                                        }//dataPrep kontrol
-                                    } //Img-url nil kontrol
-                                }//downloadURL error kontrol
-                            }//downloadURL completion
-                        }//Storage'dan download kontrol
-                    }//Storage putData completion
-                }//Görselin upload için format kontrol
-        }//current-user secCheck
+        if yeniIlanIsimTxt.text == "" || yeniIlanAdresTxt.text == "" || yeniIlanAdresTxt.text == "" || yeniIlanTakas1Txt.text == ""{
+            makeAlert(baslik: "Ups!", mesaj: EmptyFieldError)
+        }else{
+            if Auth.auth().currentUser != nil{
+                    let st = Storage.storage()
+                    let stRef = st.reference()
+                    let ilanGorselDoc = stRef.child("ilanGorselleri")
+                    if let imgData = yeniIlanImgView.image?.jpegData(compressionQuality: 0.5){
+                        let imgID = UUID().uuidString
+                        let imgRef = ilanGorselDoc.child("\(imgID).jpeg")
+                        imgRef.putData(imgData, metadata: nil) { (metadata, error) in
+                            if error != nil{
+                                self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.StorageUnkError)
+                            }else{
+                                imgRef.downloadURL { (url, error) in
+                                    if error == nil{
+                                        //doc refs
+                                        let fireStoreDatabase = Firestore.firestore()
+                                        var fsRef : DocumentReference? = nil
+                                        //data prep 4 push
+                                        if url != nil {
+                                            if let ilanImgString = url?.absoluteString{
+                                                let yeniIlan = ilanModel( isim: self.yeniIlanIsimTxt.text!, gorsel: ilanImgString, adres: self.yeniIlanAdresTxt.text!, email: Auth.auth().currentUser!.email!, takas1: self.yeniIlanTakas1Txt.text!, takas2: self.yeniIlanTakas2Txt.text!, takas3: self.yeniIlanTakas3Txt.text!)
+                                                let fsIlanDic = [
+                                                    "ilanImgUrl" : yeniIlan.gorsel,
+                                                    "ilanKullanici" : yeniIlan.email,
+                                                    "ilanIsmi" : yeniIlan.isim,
+                                                    "ilanAdres" : yeniIlan.adres,
+                                                    "ilanTakas1" : yeniIlan.takas1,
+                                                    "ilanTakas2" : yeniIlan.takas2,
+                                                    "ilanTakas3" : yeniIlan.takas3,
+                                                    "date" : FieldValue.serverTimestamp()
+                                                ] as [String:Any] /*key(fsd key val):val(data val from user)*/
+                                                
+                                                fsRef = fireStoreDatabase.collection("Ilanlar").addDocument(data: fsIlanDic, completion: { (databaseError) in
+                                                    if databaseError != nil{
+                                                        self.makeAlert(baslik: "Hata", mesaj: error?.localizedDescription ?? self.pushError)
+                                                    }else{
+                                                        self.makeAlert(baslik: "Tamamdır", mesaj: self.ilanUploadSuccess)
+                                                        self.FieldClean()
+                                                    }
+                                                })//addDocument Completion
+                                            }//dataPrep kontrol
+                                        } //Img-url nil kontrol
+                                    }//downloadURL error kontrol
+                                }//downloadURL completion
+                            }//Storage'dan download kontrol
+                        }//Storage putData completion
+                    }//Görselin upload için format kontrol
+            }//current-user secCheck
+        }
     }//btn out
 
     //fonksiyonlar
