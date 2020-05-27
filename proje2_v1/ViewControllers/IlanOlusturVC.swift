@@ -32,7 +32,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     //aksiyonlar
     @IBAction func IlanVerBtnClicked(_ sender: Any) {       ///görsel>storage --> storage>görsel urls + data > firestore
         if Auth.auth().currentUser != nil{
-            if yeniIlanIsimTxt.text == "" || yeniIlanAdresTxt.text == "" || yeniIlanTakas1Txt.text == "" || yeniIlanTakas2Txt.text == "" || yeniIlanTakas3Txt.text == "" {
                 let st = Storage.storage()
                 let stRef = st.reference()
                 let ilanGorselDoc = stRef.child("ilanGorselleri")
@@ -78,9 +77,6 @@ class IlanOlusturVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
                         }//Storage'dan download kontrol
                     }//Storage putData completion
                 }//Görselin upload için format kontrol
-            }else{
-                self.makeAlert(baslik: "Hata", mesaj: EmptyFieldError)
-            }//field value secCheck
         }//current-user secCheck
     }//btn out
 
