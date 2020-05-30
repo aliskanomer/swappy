@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0f-Yz-zYu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-556" y="1094"/>
+            <point key="canvasLocation" x="-556" y="1190"/>
         </scene>
         <!--Ilan GoruntuleVC-->
         <scene sceneID="7ZO-VE-M3y">
@@ -707,6 +707,7 @@
                     <tabBarItem key="tabBarItem" title="Mesajlar" image="message" catalog="system" id="eWh-UB-TIy"/>
                     <connections>
                         <outlet property="chatTableView" destination="9L9-jA-hzC" id="6gS-Po-NoK"/>
+                        <segue destination="RFb-sB-eFj" kind="presentation" identifier="myChatVCSeg" modalPresentationStyle="fullScreen" id="mgD-zG-J3d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YhZ-xJ-R62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -794,7 +795,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCO-jM-bdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2417" y="1094"/>
+            <point key="canvasLocation" x="-2377" y="1093"/>
         </scene>
         <!--Ara-->
         <scene sceneID="VW6-3C-1Vr">
@@ -1110,13 +1111,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="v5H-5t-hU7"/>
                     </view>
+                    <navigationItem key="navigationItem" id="gxm-6H-cER"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gk7-UO-atX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="340"/>
+            <point key="canvasLocation" x="2862" y="340"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="mgD-zG-J3d"/>
         <segue reference="JOa-n0-OJd"/>
         <segue reference="VN6-Hd-cNS"/>
     </inferredMetricsTieBreakers>

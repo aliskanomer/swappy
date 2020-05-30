@@ -20,14 +20,14 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     var messages : [Message] = [] //[Message] message.swift dosyasında tanımlanan struct
     private var docReference : DocumentReference?
     //veriler aslında IlanGoruntule Segueden geliyor ama opsiyonelle uğraşmamak için default değerleri nill
-    var user2Name : String = ""
-    var user2ImgUrl : String = ""
-    var user2UID : String = ""
+    var recieverName : String = ""
+    var recieverImg : String = ""
+    var recieverID : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = user2Name
+        self.title = recieverName
         navigationItem.largeTitleDisplayMode = .never
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = .orange
@@ -44,7 +44,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
     
     //FİREBASE VE MESAJLAŞMA FONKSİYONLARI
     func createChat(){
-        let users = [self.currentUser.uid, self.user2UID]
+        let users = [self.currentUser.uid, self.recieverName]
         let data: [String: Any] = [
             "users":users
         ]
@@ -75,7 +75,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
                     //konuşma geçmişinin yüklenmesi
                     for doc in chatQuerySnap!.documents{
                         let chat = Chat(dictionary: doc.data())
-                        if (chat?.users.contains(self.user2UID))!{ //yalnızca takasa tıklayan kullanıcı ile olan chatlerin çekilmesi için bu if eklenir
+                        if (chat?.users.contains(self.recieverID))!{ //yalnızca takasa tıklayan kullanıcı ile olan chatlerin çekilmesi için bu if eklenir
                             self.docReference = doc.reference
                             doc.reference.collection("thread")
                                 .order(by: "created", descending: false)
@@ -135,7 +135,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
         if let currentUserDispName =  Auth.auth().currentUser?.displayName{
             if let senderImgURL = currentUser.photoURL{
                 let senderImgS = senderImgURL.absoluteString
-                let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName ,senderImg:senderImgS,recieverID: user2UID,recieverName: user2Name,recieverImg: user2ImgUrl)
+                let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUserDispName ,senderImg:senderImgS,recieverID: self.recieverID,recieverName: self.recieverName,recieverImg: self.recieverImg)
                 insertNewMessage(message)
                 save(message)
                 //input alanının göndere tıklandıktan sonra temizlenmesi
@@ -172,7 +172,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
                 avatarView.image = image //burada image current user için çekilmeli
             }
         }else{
-            SDWebImageManager.shared.loadImage(with: URL(string: user2ImgUrl), options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageURL) in
+            SDWebImageManager.shared.loadImage(with: URL(string: recieverImg), options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageURL) in
                 avatarView.image = image
             }
         }
