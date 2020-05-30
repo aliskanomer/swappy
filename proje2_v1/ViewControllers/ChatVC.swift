@@ -40,6 +40,7 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
         messagesCollectionView.messagesDisplayDelegate = self
         
         loadChat()
+        //setUpNavBar()
     }
     
     //FİREBASE VE MESAJLAŞMA FONKSİYONLARI
@@ -144,13 +145,13 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
                 messagesCollectionView.scrollToBottom(animated: true)
             }
         }
-    }//Gönder butonuna tıklanıldığında çağırılan method
+    }
     func currentSender() -> SenderType {
         return Sender(id:Auth.auth().currentUser!.uid, displayName: currentUser.displayName ?? "Chat")
-    } //SenderType Protocol CURRENT USER DİSP NAME ALMAN LAZIM
+    }
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
-    }//MessagesCollectionView Protocol
+    }
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         if messages.count == 0{
             print("Chat geçmişi bulunamadı")
@@ -158,13 +159,13 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
         }else{
             return messages.count
         }
-    }//MessagesCollectionView Protocol
+    }
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return .zero //default avatar boyunun döndürülmesini sağlıyor.
-    } //MessagesLayoutDelegate Protocol
+    }
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .orange: .lightGray
-    } //MessageBubbleColor Protocol RENK İÇİN BAK
+    }
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
 
         if message.sender.senderId == currentUser.uid{
@@ -176,11 +177,24 @@ class ChatVC: MessagesViewController,InputBarAccessoryViewDelegate,MessagesDataS
                 avatarView.image = image
             }
         }
-    } //CURRENT USER IMG URL ALINMALI
+    }
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         let corner : MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(corner, .curved)
-    } //Mesaj bubble şekli
+    }
+    
+    //NAVİGASYON FONKSİYONLARI
+    func setUpNavBar() {
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 50))
+        self.view.addSubview(navBar)
+        navBar.items?.append(UINavigationItem(title: "Chat"))
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
+        navBar.topItem?.leftBarButtonItem = backButton
+    }
+    @objc func goBack(){
+        print("Nasıl dönücen burdan?")
+        self.tabBarController?.selectedIndex = 0
+    }
 }
 
     

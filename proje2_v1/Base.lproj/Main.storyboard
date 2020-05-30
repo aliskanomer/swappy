@@ -549,7 +549,7 @@
                         <outlet property="IlanGorTakas2Lbl" destination="6Yb-SU-8MA" id="GWI-4S-bDV"/>
                         <outlet property="IlanGorTakas3Lbl" destination="cEw-iy-fSc" id="dtV-da-u8t"/>
                         <outlet property="takasBtn" destination="x6o-rG-ZbO" id="2C3-VN-hAs"/>
-                        <segue destination="RFb-sB-eFj" kind="presentation" identifier="toChatVC" modalPresentationStyle="fullScreen" id="s7R-ky-xpn"/>
+                        <segue destination="RFb-sB-eFj" kind="showDetail" identifier="toChatVC" id="s7R-ky-xpn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FN2-J8-ORb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -707,7 +707,7 @@
                     <tabBarItem key="tabBarItem" title="Mesajlar" image="message" catalog="system" id="eWh-UB-TIy"/>
                     <connections>
                         <outlet property="chatTableView" destination="9L9-jA-hzC" id="6gS-Po-NoK"/>
-                        <segue destination="RFb-sB-eFj" kind="presentation" identifier="myChatVCSeg" modalPresentationStyle="fullScreen" id="mgD-zG-J3d"/>
+                        <segue destination="RFb-sB-eFj" kind="show" identifier="myChatVCSeg" id="mgD-zG-J3d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YhZ-xJ-R62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1106,7 +1106,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" id="RFb-sB-eFj" customClass="ChatVC" customModule="Swappy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pnL-0d-FSW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="v5H-5t-hU7"/>
@@ -1119,7 +1119,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mgD-zG-J3d"/>
+        <segue reference="s7R-ky-xpn"/>
         <segue reference="JOa-n0-OJd"/>
         <segue reference="VN6-Hd-cNS"/>
     </inferredMetricsTieBreakers>
