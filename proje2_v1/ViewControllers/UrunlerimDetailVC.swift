@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 import SDWebImage
 class UrunlerimDetailVC: UIViewController {
    
